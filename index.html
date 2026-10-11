@@ -3,359 +3,641 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Family Holiday 2026 – Zurich & Barcelona</title>
+<title>🌴 Family Holiday 2026 – Zurich & Barcelona 🎉</title>
 <style>
   :root{
-    --bg:#f6f8fb;
+    --sun:#ffb703;
+    --coral:#fb5607;
+    --pink:#ff006e;
+    --purple:#8338ec;
+    --blue:#3a86ff;
+    --teal:#06d6a0;
+    --sand:#fff7e6;
+    --ink:#1a1433;
+    --muted:#6b6480;
     --card:#ffffff;
-    --ink:#172033;
-    --muted:#5b6478;
-    --line:#dbe2ee;
-    --accent:#0b6bcb;
-    --accent2:#0f8a5f;
-    --warn:#b45309;
+    --line:#ffe0b2;
   }
   *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{
     margin:0;
-    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-    background:var(--bg);
+    font-family:'Trebuchet MS','Segoe UI',system-ui,-apple-system,sans-serif;
+    background:
+      radial-gradient(circle at 10% 0%, #ffe5b4 0%, transparent 45%),
+      radial-gradient(circle at 90% 15%, #c8f5ff 0%, transparent 50%),
+      radial-gradient(circle at 50% 100%, #ffd6ec 0%, transparent 50%),
+      var(--sand);
     color:var(--ink);
-    line-height:1.55;
+    line-height:1.6;
   }
+
+  /* ==== HERO ==== */
   header{
-    background:linear-gradient(135deg,#0b3b78,#0b6bcb 55%,#18a0a8);
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(120deg,#ff006e,#8338ec 40%,#3a86ff 70%,#06d6a0);
+    background-size:300% 300%;
+    animation:gradientShift 14s ease infinite;
     color:#fff;
-    padding:34px 20px 28px;
+    padding:48px 20px 60px;
+    text-align:center;
+    border-bottom:6px solid var(--sun);
   }
-  header h1{margin:0 0 8px;font-size:clamp(1.6rem,4vw,2.4rem)}
-  header p{margin:4px 0;opacity:.95}
-  main{max-width:1180px;margin:0 auto;padding:22px 16px 60px}
+  @keyframes gradientShift{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+  header::before,header::after{
+    content:"✈️ 🌞 🏖️ 🚆 🎡 🍦 🥐 🐠";
+    position:absolute;
+    font-size:1.6rem;
+    opacity:.25;
+    white-space:nowrap;
+    animation:float 20s linear infinite;
+  }
+  header::before{top:14px;left:-10%;}
+  header::after{bottom:14px;right:-10%;animation-delay:-10s;}
+  @keyframes float{
+    from{transform:translateX(0)}
+    to{transform:translateX(-60%)}
+  }
+  header .badge{
+    display:inline-block;
+    background:rgba(255,255,255,.2);
+    border:1px solid rgba(255,255,255,.4);
+    padding:5px 14px;
+    border-radius:999px;
+    font-size:.85rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:12px;
+    backdrop-filter:blur(6px);
+  }
+  header h1{
+    margin:6px 0 14px;
+    font-size:clamp(1.9rem,5vw,3.2rem);
+    text-shadow:0 4px 22px rgba(0,0,0,.35);
+    letter-spacing:.5px;
+  }
+  header p{margin:6px 0;font-size:1.05rem;opacity:.97}
+  .hero-route{
+    display:inline-flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px 14px;
+    margin-top:18px;
+    background:rgba(0,0,0,.2);
+    padding:12px 18px;
+    border-radius:16px;
+    font-weight:700;
+    backdrop-filter:blur(4px);
+  }
+  .hero-route span{white-space:nowrap}
+  .hero-route .arrow{color:var(--sun)}
+
+  main{max-width:1180px;margin:0 auto;padding:26px 16px 80px}
+
+  /* ==== SECTIONS ==== */
   section{
     background:var(--card);
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding:20px;
-    margin:18px 0;
-    box-shadow:0 8px 24px rgba(20,40,80,.06);
+    border-radius:22px;
+    padding:26px 22px;
+    margin:26px 0;
+    border:2px solid var(--line);
+    box-shadow:0 14px 40px rgba(131,56,236,.10);
+    position:relative;
   }
-  h2{margin:0 0 14px;font-size:1.35rem;border-left:5px solid var(--accent);padding-left:10px}
-  h3{margin:18px 0 8px;font-size:1.08rem;color:#0b3b78}
-  .sub{color:var(--muted);margin-top:-6px}
-  table{width:100%;border-collapse:collapse;font-size:.95rem}
-  th,td{border:1px solid var(--line);padding:10px 8px;vertical-align:top;text-align:left}
-  th{background:#eef4fb;color:#0b3b78}
-  tr:nth-child(even) td{background:#fbfdff}
-  .num{white-space:nowrap;font-weight:600}
-  .total-box{
-    background:#f0fbf6;
-    border:1px solid #b9e6d0;
-    border-radius:12px;
-    padding:14px 16px;
-    margin-top:14px;
+  section::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    border-radius:22px;
+    padding:2px;
+    background:linear-gradient(120deg,var(--pink),var(--sun),var(--teal));
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+            mask-composite:exclude;
+    opacity:.55;
+    pointer-events:none;
   }
-  .total-box p{margin:5px 0}
-  .grand{font-size:1.15rem;color:#075e3f;font-weight:700}
-  .warn{background:#fff7ed;border-color:#fed7aa;color:#7c2d12}
-  .file-link{
+  h2{
+    margin:0 0 18px;
+    font-size:clamp(1.4rem,3.4vw,1.9rem);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#2a1a5e;
+  }
+  h2 .emoji{
+    font-size:1.6rem;
+    filter:drop-shadow(0 3px 4px rgba(0,0,0,.15));
+  }
+  h2::after{
+    content:"";
+    flex:1;
+    height:6px;
+    border-radius:6px;
+    background:linear-gradient(90deg,var(--pink),var(--sun),var(--teal));
+  }
+  .sub{color:var(--muted);margin-top:-8px;margin-bottom:18px}
+
+  /* ==== DAY CARDS ==== */
+  .timeline{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:18px;
+  }
+  .day{
+    position:relative;
+    border-radius:18px;
+    padding:20px 18px 18px;
+    background:linear-gradient(180deg,#ffffff,#fff8f0);
+    border:2px dashed #ffd5a1;
+    transition:transform .25s ease, box-shadow .25s ease;
+    overflow:hidden;
+  }
+  .day:hover{
+    transform:translateY(-6px) rotate(-.4deg);
+    box-shadow:0 18px 34px rgba(251,86,7,.18);
+    border-color:var(--coral);
+  }
+  .day .daychip{
     display:inline-block;
-    background:var(--accent);
+    background:linear-gradient(135deg,var(--pink),var(--coral));
     color:#fff;
+    padding:6px 14px;
+    border-radius:999px;
+    font-size:.8rem;
+    font-weight:800;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-bottom:10px;
+    box-shadow:0 6px 14px rgba(255,0,110,.35);
+  }
+  .day h3{
+    margin:6px 0 10px;
+    font-size:1.12rem;
+    color:#1a1433;
+  }
+  .day ul{margin:8px 0 0;padding-left:20px}
+  .day li{margin-bottom:6px}
+  .day .tagline{
+    font-size:.9rem;
+    color:var(--muted);
+    font-style:italic;
+    margin-bottom:8px;
+  }
+  .day.sun{background:linear-gradient(180deg,#fffdf3,#ffefc8)}
+  .day.beach{background:linear-gradient(180deg,#f0fbff,#d9f3ff)}
+  .day.city{background:linear-gradient(180deg,#fff5fb,#ffe0ef)}
+  .day.travel{background:linear-gradient(180deg,#f4f0ff,#e6dcff)}
+  .day.warn{
+    background:linear-gradient(180deg,#fff3e0,#ffd7a8);
+    border-color:var(--coral);
+  }
+  .day.warn .daychip{background:linear-gradient(135deg,#e63946,#ff8c00)}
+
+  .highlight{
+    display:inline-block;
+    background:var(--sun);
+    color:#3a1d00;
+    padding:2px 8px;
+    border-radius:6px;
+    font-weight:700;
+    font-size:.85rem;
+    margin-right:4px;
+  }
+  .critical{
+    background:#fff1e0;
+    border-left:5px solid var(--coral);
+    padding:10px 12px;
+    border-radius:10px;
+    margin-top:10px;
+    font-size:.9rem;
+    color:#5a2a00;
+  }
+
+  /* ==== COST TABLE ==== */
+  .cost-wrap{
+    border-radius:18px;
+    overflow:hidden;
+    border:2px solid #ffd5a1;
+  }
+  table{width:100%;border-collapse:collapse;font-size:.94rem;background:#fff}
+  th,td{padding:12px 10px;vertical-align:top;text-align:left;border-bottom:1px solid #ffeacc}
+  th{
+    background:linear-gradient(135deg,var(--purple),var(--blue));
+    color:#fff;
+    font-size:.82rem;
+    letter-spacing:.6px;
+    text-transform:uppercase;
+  }
+  tbody tr:nth-child(even) td{background:#fffaf2}
+  tbody tr:hover td{background:#fff2d9}
+  .num{white-space:nowrap;font-weight:800;color:#0b6b3a}
+  .total-box{
+    margin-top:20px;
+    background:linear-gradient(135deg,#06d6a0,#3a86ff);
+    color:#fff;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 14px 30px rgba(6,214,160,.35);
+    position:relative;
+    overflow:hidden;
+  }
+  .total-box::before{
+    content:"💸";
+    position:absolute;
+    font-size:8rem;
+    right:-20px;
+    top:-30px;
+    opacity:.18;
+  }
+  .total-box p{margin:6px 0}
+  .total-box .grand{
+    font-size:1.5rem;
+    font-weight:900;
+    margin-top:12px;
+    text-shadow:0 3px 10px rgba(0,0,0,.25);
+    letter-spacing:.5px;
+  }
+  .total-box .note{font-size:.88rem;opacity:.95}
+
+  /* ==== FILES ==== */
+  .files{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:14px;
+  }
+  .file-card{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    background:linear-gradient(180deg,#ffffff,#f6f0ff);
+    border:2px solid #e7d8ff;
+    border-radius:16px;
+    padding:16px;
     text-decoration:none;
+    color:inherit;
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .file-card:hover{
+    transform:translateY(-5px) scale(1.01);
+    border-color:var(--purple);
+    box-shadow:0 16px 30px rgba(131,56,236,.22);
+  }
+  .file-card .ftitle{
+    font-weight:800;
+    color:#2a1a5e;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:.98rem;
+  }
+  .file-card .fname{
+    font-size:.82rem;
+    color:var(--muted);
+    word-break:break-word;
+    background:#f4eeff;
     padding:6px 10px;
     border-radius:8px;
-    font-size:.85rem;
-    white-space:nowrap;
+    font-family:Consolas,Monaco,monospace;
   }
-  .file-link:hover{background:#0857a5}
-  ul.file-list{list-style:none;padding:0;margin:0}
-  ul.file-list li{
+  .file-card .fbtn{
+    align-self:flex-start;
+    background:linear-gradient(135deg,var(--pink),var(--coral));
+    color:#fff;
+    padding:7px 16px;
+    border-radius:999px;
+    font-weight:800;
+    font-size:.82rem;
+    letter-spacing:.5px;
+    box-shadow:0 8px 16px rgba(255,0,110,.3);
+  }
+
+  /* ==== NOTES ==== */
+  .notes-list{list-style:none;padding:0;margin:0}
+  .notes-list li{
     display:flex;
-    flex-wrap:wrap;
-    gap:8px 14px;
-    align-items:center;
-    justify-content:space-between;
-    border-bottom:1px dashed var(--line);
-    padding:10px 0;
-  }
-  ul.file-list li:last-child{border-bottom:0}
-  .file-desc{font-weight:600}
-  .file-name{color:var(--muted);font-size:.9rem;word-break:break-word}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-  .day{
-    border:1px solid var(--line);
+    gap:12px;
+    padding:12px 14px;
     border-radius:12px;
-    padding:14px;
-    background:#fff;
+    margin-bottom:10px;
+    background:linear-gradient(90deg,#fff9ec,#fff);
+    border-left:6px solid var(--sun);
+    font-size:.95rem;
   }
-  .day h3{margin-top:0}
-  .tag{display:inline-block;background:#e8f1ff;color:#0b4a9b;border-radius:999px;padding:2px 9px;font-size:.78rem;font-weight:600;margin-right:6px}
-  footer{color:var(--muted);text-align:center;padding:20px;font-size:.9rem}
+  .notes-list li:nth-child(3n+2){border-left-color:var(--teal);background:linear-gradient(90deg,#effff8,#fff)}
+  .notes-list li:nth-child(3n+3){border-left-color:var(--pink);background:linear-gradient(90deg,#fff0f7,#fff)}
+  .notes-list .ic{font-size:1.3rem;line-height:1}
+
+  footer{
+    text-align:center;
+    padding:26px 16px 40px;
+    color:#5a4a80;
+    font-size:.9rem;
+  }
+  footer .heart{color:var(--pink)}
+
   @media print{
-    header{background:#0b3b78 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    .file-link{color:#000;background:none;padding:0;text-decoration:underline}
+    header{background:#8338ec !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .file-card{border:1px solid #ccc;box-shadow:none}
     section{box-shadow:none;break-inside:avoid}
+    body{background:#fff}
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Family Holiday 2026 – Zurich & Barcelona</h1>
-  <p><strong>Travellers:</strong> 2 adults + 3 children (0, 4 and 7 years old)</p>
-  <p><strong>Route:</strong> Dresden → Zurich → Barcelona → Berlin → Dresden</p>
-  <p><strong>Dates:</strong> 11 Oct 2026 – 19 Oct 2026</p>
+  <span class="badge">✈️ Wanderlust Activated ✈️</span>
+  <h1>Family Holiday 2026 🎉</h1>
+  <p><strong>2 adults + 3 little adventurers</strong> (0, 4 & 7 years old)</p>
+  <p>Sun, snow-capped mountains, tapas & train rides 🚆🏔️🥘</p>
+  <div class="hero-route">
+    <span>🇩🇪 Dresden</span>
+    <span class="arrow">→</span>
+    <span>🇨🇭 Zurich</span>
+    <span class="arrow">→</span>
+    <span>🇪🇸 Barcelona</span>
+    <span class="arrow">→</span>
+    <span>🇩🇪 Berlin</span>
+    <span class="arrow">→</span>
+    <span>🇩🇪 Dresden</span>
+  </div>
+  <p style="margin-top:14px;font-weight:700;letter-spacing:1px">11 – 19 October 2026</p>
 </header>
 
 <main>
 
-  <!-- COSTS -->
+  <!-- ============ ITINERARY ============ -->
+  <section id="itinerary">
+    <h2><span class="emoji">🗺️</span> The Grand Adventure Itinerary</h2>
+    <p class="sub">Nine days, two countries, three trains, two flights, endless memories. Buckle up!</p>
+
+    <div class="timeline">
+
+      <div class="day travel">
+        <span class="daychip">Day 1 · Sun 11 Oct</span>
+        <h3>🚆 Overnight to Zurich</h3>
+        <p class="tagline">Pajamas on, adventure begins!</p>
+        <ul>
+          <li><strong>21:02</strong> EC 458 leaves <span class="highlight">Dresden Hbf</span></li>
+          <li>Seats: Wg. 257, Pl. 32–36 (family compartment booked 🎟️)</li>
+          <li>Pack: snacks, water, wet wipes, blankets, headphones, tablets, favourite cuddly toy 🧸</li>
+          <li>Keep passports + PDFs printed & offline</li>
+        </ul>
+      </div>
+
+      <div class="day city">
+        <span class="daychip">Day 2 · Mon 12 Oct</span>
+        <h3>🇨🇭 Hello Zurich!</h3>
+        <p class="tagline">Alps in the distance, chocolate in hand</p>
+        <ul>
+          <li><strong>09:05</strong> Arrive Zürich HB — drop bags in lockers if early</li>
+          <li>Check-in from <strong>15:00</strong> at VISIONAPARTMENTS Albertstrasse (self check-in, no reception)</li>
+          <li>Upload ID using booking <strong>B891286</strong> + last name <strong>Chowdhury</strong></li>
+          <li>Easy first day: Lake Zürich, Old Town, Bahnhofstrasse, Lindt Home of Chocolate 🍫</li>
+          <li>Quiet hours 22:00–06:00 😴</li>
+        </ul>
+      </div>
+
+      <div class="day sun">
+        <span class="daychip">Day 3 · Tue 13 Oct</span>
+        <h3>🏔️ Zurich Family Day</h3>
+        <p class="tagline">Pick your own adventure</p>
+        <ul>
+          <li><strong>Option A:</strong> Zürich Zoo 🦁 (kids will love it)</li>
+          <li><strong>Option B:</strong> Swiss Museum of Transport, Lucerne 🚂</li>
+          <li><strong>Option C:</strong> Uetliberg hike + playground + lake boat ride ⛵</li>
+          <li>Keep afternoon flexible — naps are sacred for a 0 & 4 year old</li>
+        </ul>
+      </div>
+
+      <div class="day travel">
+        <span class="daychip">Day 4 · Wed 14 Oct</span>
+        <h3>✈️ Zürich → Barcelona → Castelldefels</h3>
+        <p class="tagline">From alpine air to Mediterranean breeze</p>
+        <ul>
+          <li>Check out by <strong>10:00</strong></li>
+          <li>Fly <strong>ZRH → BCN</strong> (Vueling) — arrive at airport ~3 hrs early with 3 kids 👨‍👩‍👧‍👦</li>
+          <li>Transfer BCN → Castelldefels: train, bus, or taxi 🚕</li>
+          <li>Address: <strong>Carrer del Doctor Ferran, 5, 08860 Castelldefels</strong></li>
+          <li>Airbnb check-in from <strong>16:00</strong> — keypad self check-in, ask host for code</li>
+        </ul>
+      </div>
+
+      <div class="day beach">
+        <span class="daychip">Days 5–8 · 15–18 Oct</span>
+        <h3>🏖️ Barcelona & Castelldefels Bliss</h3>
+        <p class="tagline">Sun, sand, tapas and Gaudí magic</p>
+        <ul>
+          <li>Castelldefels beach = perfect for little ones 🌊</li>
+          <li>Barcelona by R2 train (~20–25 min):</li>
+          <li>✨ Sagrada Família · Park Güell · Barcelona Aquarium 🐠 · Ciutadella Park · Gothic Quarter · Montjuïc cable car · Tibidabo</li>
+          <li>Book timed tickets online in advance 📱</li>
+          <li>Stroller for the 4-year-old + carrier for the baby 👶</li>
+          <li>Easy trips: Sitges, Montserrat, or just a lazy beach day ☀️</li>
+          <li class="critical">⚠️ Airbnb shows "4 guests maximum" but you have 5 — confirm with host that the infant is allowed!</li>
+        </ul>
+      </div>
+
+      <div class="day warn">
+        <span class="daychip">Day 9 · Mon 19 Oct</span>
+        <h3>🏁 The Big Journey Home</h3>
+        <p class="tagline">One last croissant, then homeward bound</p>
+        <ul>
+          <li>Check out by <strong>11:00</strong></li>
+          <li>Fly <strong>BCN → BER</strong> (Vueling)</li>
+          <li><strong>16:32</strong> IC 2571 departs <span class="highlight">Berlin Ostkreuz</span></li>
+          <li><strong>18:21</strong> Arrive <span class="highlight">Dresden-Neustadt</span> — home sweet home 🏡</li>
+        </ul>
+        <div class="critical">
+          <strong>⏰ Critical timing:</strong> BER → Ostkreuz takes ~30 min by S-Bahn + walking. The DB ticket is non-refundable and has Zugbindung (train-bound). Give yourself a HUGE buffer — if the flight is late, this train is gone.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ FILES ============ -->
+  <section id="files">
+    <h2><span class="emoji">📎</span> Your Booking Vault</h2>
+    <p class="sub">Keep this HTML file in the same folder as the PDFs. Click any card to open the file.</p>
+
+    <div class="files">
+
+      <a class="file-card" href="Booking.com_ Confirmation.pdf" target="_blank" rel="noopener">
+        <span class="ftitle">🏨 Zurich Apartment</span>
+        <span class="fname">Booking.com_ Confirmation.pdf</span>
+        <span class="fbtn">Open PDF →</span>
+      </a>
+
+      <a class="file-card" href="Booking.com_confimration1.pdf" target="_blank" rel="noopener">
+        <span class="ftitle">💬 Self Check-in Messages</span>
+        <span class="fname">Booking.com_confimration1.pdf</span>
+        <span class="fbtn">Open PDF →</span>
+      </a>
+
+      <a class="file-card" href="DB_Ticket_144548969358.pdf" target="_blank" rel="noopener">
+        <span class="ftitle">🚆 Dresden → Zürich</span>
+        <span class="fname">DB_Ticket_144548969358.pdf</span>
+        <span class="fbtn">Open PDF →</span>
+      </a>
+
+      <a class="file-card" href="DB_Ticket_130246259840.pdf" target="_blank" rel="noopener">
+        <span class="ftitle">🚆 Berlin → Dresden</span>
+        <span class="fname">DB_Ticket_130246259840.pdf</span>
+        <span class="fbtn">Open PDF →</span>
+      </a>
+
+      <a class="file-card" href="Die Junior-Karte für eigene Kinder von 6 bis 15,99 Jahre. _ SBB.pdf" target="_blank" rel="noopener">
+        <span class="ftitle">👧 SBB Junior-Karte</span>
+        <span class="fname">Die Junior-Karte für eigene Kinder von 6 bis 15,99 Jahre. _ SBB.pdf</span>
+        <span class="fbtn">Open PDF →</span>
+      </a>
+
+      <a class="file-card" href="sbb tagesticket.pdf" target="_blank" rel="noopener">
+        <span class="ftitle">🎫 SBB Day Ticket (info only)</span>
+        <span class="fname">sbb tagesticket.pdf</span>
+        <span class="fbtn">Open PDF →</span>
+      </a>
+
+      <a class="file-card" href="Rechnung_11006896.pdf" target="_blank" rel="noopener">
+        <span class="ftitle">✈️ Zürich → Barcelona</span>
+        <span class="fname">Rechnung_11006896.pdf</span>
+        <span class="fbtn">Open PDF →</span>
+      </a>
+
+      <a class="file-card" href="Rechnung_11007270.pdf" target="_blank" rel="noopener">
+        <span class="ftitle">✈️ Barcelona → Berlin</span>
+        <span class="fname">Rechnung_11007270.pdf</span>
+        <span class="fbtn">Open PDF →</span>
+      </a>
+
+      <a class="file-card" href="Your trip overview - Airbnb.pdf" target="_blank" rel="noopener">
+        <span class="ftitle">🏖️ Airbnb Castelldefels</span>
+        <span class="fname">Your trip overview - Airbnb.pdf</span>
+        <span class="fbtn">Open PDF →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============ COSTS ============ -->
   <section id="costs">
-    <h2>Cost Assessment</h2>
+    <h2><span class="emoji">💰</span> The Money Bit (Sorry!)</h2>
     <p class="sub">Based on the uploaded PDFs. Original currency shown; EUR conversion is approximate.</p>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Booking</th>
-          <th>Details</th>
-          <th>Original cost</th>
-          <th>≈ EUR</th>
-          <th>File</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>11–12 Oct 2026</td>
-          <td>DB train</td>
-          <td>Dresden Hbf → Zürich HB, EC 458, dep 21:02, arr 09:05, 5 seats, family compartment reservation</td>
-          <td class="num">€186.76</td>
-          <td class="num">€186.76</td>
-          <td><a class="file-link" href="DB_Ticket_144548969358.pdf" target="_blank" rel="noopener">Open</a></td>
-        </tr>
-        <tr>
-          <td>12–14 Oct 2026</td>
-          <td>Zurich apartment</td>
-          <td>VISIONAPARTMENTS Albertstrasse, 2 nights, 5 guests, self check-in. City tax appears included in final price.</td>
-          <td class="num">CHF 234.17</td>
-          <td class="num">≈ €252.00</td>
-          <td><a class="file-link" href="Booking.com_ Confirmation.pdf" target="_blank" rel="noopener">Open</a></td>
-        </tr>
-        <tr>
-          <td>Valid 1 year</td>
-          <td>SBB Junior-Karte</td>
-          <td>1× Junior-Karte for own child 6–15.99 years; likely for the 7-year-old. Child travels free with a parent holding a valid ticket.</td>
-          <td class="num">CHF 30.00</td>
-          <td class="num">≈ €32.28</td>
-          <td><a class="file-link" href="Die Junior-Karte für eigene Kinder von 6 bis 15,99 Jahre. _ SBB.pdf" target="_blank" rel="noopener">Open</a></td>
-        </tr>
-        <tr>
-          <td>14 Oct 2026</td>
-          <td>Flight ZRH → BCN</td>
-          <td>Vueling, 5 passengers. Invoice includes flight, baggage and fees; Smily points discount applied.</td>
-          <td class="num">€294.70</td>
-          <td class="num">€294.70</td>
-          <td><a class="file-link" href="Rechnung_11006896.pdf" target="_blank" rel="noopener">Open</a></td>
-        </tr>
-        <tr>
-          <td>14–19 Oct 2026</td>
-          <td>Airbnb Castelldefels</td>
-          <td>Apartamentos Centric, Carrer del Doctor Ferran 5, 08860 Castelldefels. 5 nights. Confirmation HM54PNWE2M. Non-refundable.</td>
-          <td class="num">€590.00</td>
-          <td class="num">€590.00</td>
-          <td><a class="file-link" href="Your trip overview - Airbnb.pdf" target="_blank" rel="noopener">Open</a></td>
-        </tr>
-        <tr>
-          <td>19 Oct 2026</td>
-          <td>Flight BCN → BER</td>
-          <td>Vueling, 5 passengers. Invoice includes flight, baggage and fees.</td>
-          <td class="num">€466.06</td>
-          <td class="num">€466.06</td>
-          <td><a class="file-link" href="Rechnung_11007270.pdf" target="_blank" rel="noopener">Open</a></td>
-        </tr>
-        <tr>
-          <td>19 Oct 2026</td>
-          <td>DB train</td>
-          <td>Berlin Ostkreuz → Dresden-Neustadt, IC 2571, dep 16:32, arr 18:21, 5 seats, family area reservation.</td>
-          <td class="num">€67.98</td>
-          <td class="num">€67.98</td>
-          <td><a class="file-link" href="DB_Ticket_130246259840.pdf" target="_blank" rel="noopener">Open</a></td>
-        </tr>
-        <tr>
-          <td>—</td>
-          <td>SBB day ticket / conditions</td>
-          <td>No price or travel date found in the PDF. Excluded from total until a paid ticket/receipt is available.</td>
-          <td class="num">—</td>
-          <td class="num">—</td>
-          <td><a class="file-link" href="sbb tagesticket.pdf" target="_blank" rel="noopener">Open</a></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="total-box">
-      <p><strong>EUR items subtotal:</strong> €1,605.50</p>
-      <p><strong>CHF items subtotal:</strong> CHF 264.17 (hotel CHF 234.17 + Junior-Karte CHF 30.00)</p>
-      <p><strong>CHF converted:</strong> ≈ €284.25 (using the hotel confirmation rate: CHF 234.17 ≈ €252.00)</p>
-      <p class="grand">Estimated grand total: ≈ €1,889.75</p>
-      <p class="sub">Approx. €378 per traveller based on 5 people. Actual card/FX fees may change this slightly.</p>
+    <div class="cost-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Booking</th>
+            <th>Details</th>
+            <th>Original</th>
+            <th>≈ EUR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>11–12 Oct</td>
+            <td>🚆 DB train</td>
+            <td>Dresden Hbf → Zürich HB, EC 458, 5 seats, family compartment</td>
+            <td class="num">€186.76</td>
+            <td class="num">€186.76</td>
+          </tr>
+          <tr>
+            <td>12–14 Oct</td>
+            <td>🏨 Zurich apartment</td>
+            <td>VISIONAPARTMENTS Albertstrasse, 2 nights, 5 guests</td>
+            <td class="num">CHF 234.17</td>
+            <td class="num">≈ €252.00</td>
+          </tr>
+          <tr>
+            <td>1 year</td>
+            <td>👧 SBB Junior-Karte</td>
+            <td>Child travels free with a parent holding a valid ticket</td>
+            <td class="num">CHF 30.00</td>
+            <td class="num">≈ €32.28</td>
+          </tr>
+          <tr>
+            <td>14 Oct</td>
+            <td>✈️ ZRH → BCN</td>
+            <td>Vueling, 5 passengers, baggage + fees</td>
+            <td class="num">€294.70</td>
+            <td class="num">€294.70</td>
+          </tr>
+          <tr>
+            <td>14–19 Oct</td>
+            <td>🏖️ Airbnb Castelldefels</td>
+            <td>Apartamentos Centric, 5 nights, non-refundable (HM54PNWE2M)</td>
+            <td class="num">€590.00</td>
+            <td class="num">€590.00</td>
+          </tr>
+          <tr>
+            <td>19 Oct</td>
+            <td>✈️ BCN → BER</td>
+            <td>Vueling, 5 passengers, baggage + fees</td>
+            <td class="num">€466.06</td>
+            <td class="num">€466.06</td>
+          </tr>
+          <tr>
+            <td>19 Oct</td>
+            <td>🚆 DB train</td>
+            <td>Berlin Ostkreuz → Dresden-Neustadt, IC 2571, 5 seats</td>
+            <td class="num">€67.98</td>
+            <td class="num">€67.98</td>
+          </tr>
+          <tr>
+            <td>—</td>
+            <td>🎫 SBB day ticket</td>
+            <td>No price/date in the PDF — excluded from total</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <p class="sub warn" style="padding:10px;border-radius:10px;margin-top:12px;">
-      <strong>Note:</strong> The Zurich booking shows city tax of €3.76 × 5 guests × 2 nights = €37.60 and states the final price is taxes included. Additional supplements such as extra beds are not included.
+    <div class="total-box">
+      <p>🇪🇺 <strong>EUR items subtotal:</strong> €1,605.50</p>
+      <p>🇨🇭 <strong>CHF items subtotal:</strong> CHF 264.17</p>
+      <p>💱 <strong>CHF converted:</strong> ≈ €284.25 (using the hotel confirmation rate)</p>
+      <p class="grand">🎉 Estimated Grand Total: ≈ €1,889.75</p>
+      <p class="note">≈ €378 per traveller · Card/FX fees may tweak this slightly.</p>
+    </div>
+
+    <p class="sub" style="margin-top:16px;background:#fff7ed;border-left:5px solid var(--coral);padding:12px;border-radius:10px">
+      <strong>Note:</strong> Zurich city tax (€3.76 × 5 guests × 2 nights = €37.60) appears already included in the final price. Extra beds/supplements are not included.
     </p>
   </section>
 
-  <!-- ITINERARY -->
-  <section id="itinerary">
-    <h2>Family Itinerary – Switzerland & Spain</h2>
-
-    <div class="grid">
-      <div class="day">
-        <h3><span class="tag">Day 1</span>Sun 11 Oct 2026 – Dresden → Zürich</h3>
-        <p><strong>21:02</strong> EC 458 departs Dresden Hbf. Overnight train to Zürich HB.</p>
-        <ul>
-          <li>Seats: Wg. 257, Pl. 32–36; family compartment reservation.</li>
-          <li>Bring: water, snacks, wet wipes, light blankets, headphones, favourite toys/tablet, change of clothes for the children.</li>
-          <li>Keep passports/ID and all PDFs offline and printed.</li>
-        </ul>
-      </div>
-
-      <div class="day">
-        <h3><span class="tag">Day 2</span>Mon 12 Oct 2026 – Arrive Zürich</h3>
-        <p><strong>09:05</strong> Arrive Zürich HB.</p>
-        <ul>
-          <li>Use luggage lockers at Zürich HB if the apartment is not ready yet.</li>
-          <li>Check-in from <strong>15:00</strong> at VISIONAPARTMENTS Albertstrasse. No reception.</li>
-          <li>Complete self check-in: upload passport/ID using booking number <strong>B891286</strong> and last name <strong>Chowdhury</strong>. Access code is sent on arrival day.</li>
-          <li>Easy first day: Lake Zürich, Old Town, Bahnhofstrasse, Lindt Home of Chocolate if energy allows.</li>
-          <li>Quiet hours: 22:00–06:00. No daily cleaning; toiletries are arrival amenities only.</li>
-        </ul>
-      </div>
-
-      <div class="day">
-        <h3><span class="tag">Day 3</span>Tue 13 Oct 2026 – Zürich family day</h3>
-        <ul>
-          <li><strong>Option A:</strong> Zürich Zoo – excellent for young children.</li>
-          <li><strong>Option B:</strong> Swiss Museum of Transport in Lucerne – a day trip by train, very family-friendly.</li>
-          <li><strong>Option C:</strong> Uetliberg easy hike + playground, or a short Lake Zürich boat ride.</li>
-          <li>Keep the afternoon flexible; children 0, 4 and 7 will need downtime.</li>
-        </ul>
-      </div>
-
-      <div class="day">
-        <h3><span class="tag">Day 4</span>Wed 14 Oct 2026 – Zürich → Barcelona / Castelldefels</h3>
-        <ul>
-          <li>Check out by <strong>10:00</strong>.</li>
-          <li>Fly ZRH → BCN (Vueling). Check exact departure time on the Vueling booking.</li>
-          <li>Arrive at ZRH about <strong>3 hours before departure</strong> with 3 children and checked bags.</li>
-          <li>Transfer from BCN to Castelldefels: train, bus or taxi. Address: <strong>Carrer del Doctor Ferran, 5, 08860 Castelldefels</strong>.</li>
-          <li>Airbnb check-in from <strong>16:00</strong>; self check-in with keypad. Contact host for code.</li>
-        </ul>
-      </div>
-
-      <div class="day">
-        <h3><span class="tag">Days 5–8</span>Thu 15 – Sun 18 Oct 2026 – Barcelona / Castelldefels</h3>
-        <ul>
-          <li>Castelldefels beach is great for young children.</li>
-          <li>Barcelona by R2 train: about 20–25 minutes. Good family sights: Sagrada Família, Park Güell, Barcelona Aquarium, Ciutadella Park, Gothic Quarter, Montjuïc cable car, Tibidabo.</li>
-          <li>Book timed tickets for Sagrada Família and Park Güell in advance.</li>
-          <li>Use a lightweight stroller for the 4-year-old and a carrier for the 0-year-old.</li>
-          <li>Possible easy day trips: Sitges, Montserrat, or a beach day.</li>
-          <li>Airbnb: non-refundable, 4 guests maximum rule is shown; verify with host that the infant is allowed.</li>
-        </ul>
-      </div>
-
-      <div class="day">
-        <h3><span class="tag">Day 9</span>Mon 19 Oct 2026 – Castelldefels → Berlin → Dresden</h3>
-        <ul>
-          <li>Check out by <strong>11:00</strong>.</li>
-          <li>Fly BCN → BER (Vueling).</li>
-          <li><strong>16:32</strong> IC 2571 departs Berlin Ostkreuz.</li>
-          <li><strong>18:21</strong> Arrive Dresden-Neustadt.</li>
-          <li class="warn" style="padding:8px;border-radius:8px;margin-top:8px;">
-            <strong>Critical timing:</strong> You must be at Berlin Ostkreuz before 16:32. BER to Ostkreuz takes roughly 30 minutes by S-Bahn plus walking. The DB ticket is non-refundable and has Zugbindung. Verify the Vueling arrival time and allow a large buffer. If the flight is late, the train may be missed.
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- FILES -->
-  <section id="files">
-    <h2>Booking Files – Click to Open</h2>
-    <p class="sub">Keep this HTML file in the same folder as the PDFs. If a link does not open, check that the filename matches exactly.</p>
-
-    <ul class="file-list">
-      <li>
-        <span class="file-desc">Zurich apartment confirmation</span>
-        <span class="file-name">Booking.com_ Confirmation.pdf</span>
-        <a class="file-link" href="Booking.com_ Confirmation.pdf" target="_blank" rel="noopener">Open</a>
-      </li>
-      <li>
-        <span class="file-desc">Zurich self check-in messages / booking number</span>
-        <span class="file-name">Booking.com_confimration1.pdf</span>
-        <a class="file-link" href="Booking.com_confimration1.pdf" target="_blank" rel="noopener">Open</a>
-      </li>
-      <li>
-        <span class="file-desc">Dresden → Zürich train ticket</span>
-        <span class="file-name">DB_Ticket_144548969358.pdf</span>
-        <a class="file-link" href="DB_Ticket_144548969358.pdf" target="_blank" rel="noopener">Open</a>
-      </li>
-      <li>
-        <span class="file-desc">Berlin → Dresden train ticket</span>
-        <span class="file-name">DB_Ticket_130246259840.pdf</span>
-        <a class="file-link" href="DB_Ticket_130246259840.pdf" target="_blank" rel="noopener">Open</a>
-      </li>
-      <li>
-        <span class="file-desc">SBB Junior-Karte information</span>
-        <span class="file-name">Die Junior-Karte für eigene Kinder von 6 bis 15,99 Jahre. _ SBB.pdf</span>
-        <a class="file-link" href="Die Junior-Karte für eigene Kinder von 6 bis 15,99 Jahre. _ SBB.pdf" target="_blank" rel="noopener">Open</a>
-      </li>
-      <li>
-        <span class="file-desc">SBB day ticket / conditions – no price found</span>
-        <span class="file-name">sbb tagesticket.pdf</span>
-        <a class="file-link" href="sbb tagesticket.pdf" target="_blank" rel="noopener">Open</a>
-      </li>
-      <li>
-        <span class="file-desc">Flight Zurich → Barcelona invoice</span>
-        <span class="file-name">Rechnung_11006896.pdf</span>
-        <a class="file-link" href="Rechnung_11006896.pdf" target="_blank" rel="noopener">Open</a>
-      </li>
-      <li>
-        <span class="file-desc">Flight Barcelona → Berlin invoice</span>
-        <span class="file-name">Rechnung_11007270.pdf</span>
-        <a class="file-link" href="Rechnung_11007270.pdf" target="_blank" rel="noopener">Open</a>
-      </li>
-      <li>
-        <span class="file-desc">Airbnb Castelldefels trip overview</span>
-        <span class="file-name">Your trip overview - Airbnb.pdf</span>
-        <a class="file-link" href="Your trip overview - Airbnb.pdf" target="_blank" rel="noopener">Open</a>
-      </li>
-    </ul>
-  </section>
-
-  <!-- NOTES -->
+  <!-- ============ NOTES ============ -->
   <section id="notes">
-    <h2>Family Travel Notes & Risk Checks</h2>
-    <ul>
-      <li><strong>Zurich self check-in:</strong> No reception. Upload ID/passport before arrival. Use booking number <strong>B891286</strong> and last name <strong>Chowdhury</strong>. Access code arrives on arrival day.</li>
-      <li><strong>Possible apartment change:</strong> Messages mention an alternative at Cramerstrasse 8, 2nd floor. Your reply says you do not need to change. Confirm final address with VISIONAPARTMENTS if unsure.</li>
-      <li><strong>Zurich apartment rules:</strong> No smoking, no commercial use, no parties/hen/stag. Quiet hours 22:00–06:00. No daily cleaning. Toiletries not replenished.</li>
-      <li><strong>Airbnb:</strong> Non-refundable. House rules show “4 guests maximum”; reservation says 2 guests, 2 children, 1 infant. Verify with host that the infant is allowed. Check-in with keypad; ask host for code.</li>
-      <li><strong>Flights:</strong> Vueling invoices show baggage charges, but check the exact baggage allowance for all 5 passengers. Arrive 3 hours early for international flights with children.</li>
-      <li><strong>Trains:</strong> DB tickets are only valid with official photo ID. Seat reservations are included. The Berlin → Dresden ticket has Zugbindung and is non-refundable.</li>
-      <li><strong>Junior-Karte:</strong> The 7-year-old can travel free with a parent holding a valid ticket. The 0- and 4-year-olds may also travel free on Swiss public transport; verify current SBB rules.</li>
-      <li><strong>SBB day ticket PDF:</strong> No price or date is visible, so it is not included in the cost total. If it was purchased separately, add the amount.</li>
-      <li><strong>Money:</strong> Switzerland uses CHF; Spain and Germany use EUR. Inform your bank about travel. Carry some cash for small purchases.</li>
-      <li><strong>Documents:</strong> Print all bookings, passports/IDs, insurance, and this itinerary. Save offline copies on two phones.</li>
+    <h2><span class="emoji">📝</span> Pro Family-Traveller Notes</h2>
+    <ul class="notes-list">
+      <li><span class="ic">🔑</span><div><strong>Zurich self check-in:</strong> No reception. Upload ID/passport before arrival using booking <strong>B891286</strong> and last name <strong>Chowdhury</strong>. Access code arrives on arrival day.</div></li>
+      <li><span class="ic">🏠</span><div><strong>Possible apartment swap:</strong> Messages mention an alternative at Cramerstrasse 8, 2nd floor. Your reply says no change needed — double-check the final address with VISIONAPARTMENTS.</div></li>
+      <li><span class="ic">🚭</span><div><strong>Zurich rules:</strong> No smoking, no parties, quiet hours 22:00–06:00, no daily cleaning, toiletries are arrival-only.</div></li>
+      <li><span class="ic">👨‍👩‍👧‍👦</span><div><strong>Airbnb:</strong> Non-refundable. House rules show "4 guests maximum" — confirm the infant is allowed with your host.</div></li>
+      <li><span class="ic">🧳</span><div><strong>Flights:</strong> Vueling invoices include baggage, but verify the allowance for all 5 passengers. Arrive 3 hrs early.</div></li>
+      <li><span class="ic">🎫</span><div><strong>Trains:</strong> DB tickets need a photo ID. The Berlin → Dresden ticket is non-refundable with Zugbindung (train-bound).</div></li>
+      <li><span class="ic">👧</span><div><strong>Junior-Karte:</strong> 7-year-old travels free with a parent holding a valid ticket. Verify SBB rules for the 0 & 4-year-olds.</div></li>
+      <li><span class="ic">💱</span><div><strong>Money:</strong> CHF in Switzerland, EUR in Spain & Germany. Tell your bank you're travelling and carry a little cash.</div></li>
+      <li><span class="ic">📱</span><div><strong>Offline backup:</strong> Print all bookings + passports + insurance. Save everything on at least two phones.</div></li>
     </ul>
   </section>
 
 </main>
 
 <footer>
-  Generated from the uploaded booking PDFs. Costs are estimates based on the documents provided; verify all times, prices and baggage allowances before travel.
+  Made with <span class="heart">❤️</span> for the Chowdhury family adventure · Verify all times, prices and baggage before you fly ✈️
 </footer>
 
 </body>
