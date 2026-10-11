@@ -22,6 +22,7 @@
   html{scroll-behavior:smooth}
   body{
     margin:0;
+    padding-bottom:110px;
     font-family:'Trebuchet MS','Segoe UI',system-ui,-apple-system,sans-serif;
     background:
       radial-gradient(circle at 10% 0%, #ffe5b4 0%, transparent 45%),
@@ -343,21 +344,265 @@
   }
   footer .heart{color:var(--pink)}
 
+  /* ==== PRINT TOOLBAR (screen only) ==== */
+  .print-toolbar{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    z-index:9999;
+    background:#ffffff;
+    border:2px solid var(--purple);
+    border-radius:16px;
+    padding:12px 14px;
+    box-shadow:0 14px 34px rgba(131,56,236,.28);
+    font-size:.88rem;
+    max-width:260px;
+    color:var(--ink);
+  }
+  .print-toolbar .pt-title{
+    font-weight:800;
+    color:#2a1a5e;
+    margin-bottom:8px;
+    font-size:.95rem;
+    letter-spacing:.3px;
+  }
+  .print-toolbar label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:3px 0;
+    cursor:pointer;
+    user-select:none;
+  }
+  .print-toolbar input[type=checkbox]{
+    accent-color:var(--purple);
+    width:16px;height:16px;
+  }
+  .print-toolbar .pt-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:10px;
+  }
+  .print-toolbar button{
+    flex:1 1 auto;
+    border:none;
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:800;
+    font-size:.8rem;
+    letter-spacing:.4px;
+    padding:8px 10px;
+    border-radius:999px;
+    color:#fff;
+    transition:transform .15s ease;
+  }
+  .print-toolbar button:hover{transform:translateY(-1px)}
+  .print-toolbar .btn-print{
+    background:linear-gradient(135deg,var(--pink),var(--coral));
+    box-shadow:0 8px 16px rgba(255,0,110,.28);
+  }
+  .print-toolbar .btn-all{
+    background:linear-gradient(135deg,var(--purple),var(--blue));
+    box-shadow:0 8px 16px rgba(58,134,255,.28);
+  }
+  .print-toolbar .pt-hint{
+    margin-top:8px;
+    font-size:.72rem;
+    color:var(--muted);
+    text-align:center;
+    line-height:1.3;
+  }
+
+  /* ==== PRINT STYLESHEET ==== */
   @media print{
-    header{background:#8338ec !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    .file-card{border:1px solid #ccc;box-shadow:none}
-    section{box-shadow:none;break-inside:avoid}
-    body{background:#fff}
+    @page{ size:A4; margin:12mm; }
+
+    *{
+      -webkit-print-color-adjust:exact !important;
+      print-color-adjust:exact !important;
+      animation:none !important;
+      transition:none !important;
+    }
+
+    body{
+      background:#ffffff !important;
+      padding:0 !important;
+      font-size:10.5pt !important;
+    }
+
+    .print-toolbar,
+    .no-print,
+    .file-card .fbtn,
+    header::before,
+    header::after,
+    section::before,
+    .total-box::before,
+    h2::after{
+      display:none !important;
+    }
+
+    /* HERO */
+    header{
+      background:#0b3b78 !important;
+      color:#ffffff !important;
+      padding:18px 20px !important;
+      border-bottom:5px solid #ffb703 !important;
+      text-align:left !important;
+    }
+    header h1{ font-size:22pt !important; text-shadow:none !important; margin:4px 0 6px !important; }
+    header p{ font-size:10pt !important; }
+    header .badge{ background:rgba(255,255,255,.15) !important; border-color:rgba(255,255,255,.35) !important; }
+    .hero-route{ background:rgba(0,0,0,.25) !important; padding:8px 12px !important; }
+
+    main{ max-width:none !important; padding:0 !important; margin:0 !important; }
+
+    section{
+      box-shadow:none !important;
+      border:1px solid #ccd7e6 !important;
+      border-radius:8px !important;
+      padding:12px 14px !important;
+      margin:12px 0 !important;
+      background:#ffffff !important;
+    }
+
+    h2{
+      font-size:14pt !important;
+      margin:0 0 10px !important;
+      padding:5px 10px !important;
+      background:#eef4fb !important;
+      border-left:6px solid #0b6bcb !important;
+      border-radius:4px !important;
+      color:#0b3b78 !important;
+    }
+    h2 .emoji{ font-size:1em !important; }
+
+    /* DAYS: full width, no hover, avoid breaking */
+    .timeline{ display:block !important; }
+    .day{
+      display:block !important;
+      width:100% !important;
+      margin:0 0 8px 0 !important;
+      padding:10px 12px !important;
+      border:1px solid #ccd7e6 !important;
+      border-left:6px solid #0b6bcb !important;
+      border-radius:6px !important;
+      background:#fbfdff !important;
+      box-shadow:none !important;
+      transform:none !important;
+      page-break-inside:avoid !important;
+      break-inside:avoid !important;
+    }
+    .day:hover{ transform:none !important; box-shadow:none !important; }
+    .day .daychip{
+      background:#0b6bcb !important;
+      color:#fff !important;
+      font-size:8pt !important;
+      padding:2px 8px !important;
+      box-shadow:none !important;
+    }
+    .day.travel{ border-left-color:#8338ec !important; background:#faf7ff !important; }
+    .day.travel .daychip{ background:#8338ec !important; }
+    .day.city{ border-left-color:#0b6bcb !important; background:#f6faff !important; }
+    .day.city .daychip{ background:#0b6bcb !important; }
+    .day.sun{ border-left-color:#d97706 !important; background:#fffaf0 !important; }
+    .day.sun .daychip{ background:#d97706 !important; }
+    .day.beach{ border-left-color:#0891b2 !important; background:#f2fdff !important; }
+    .day.beach .daychip{ background:#0891b2 !important; }
+    .day.warn{ border-left-color:#c2410c !important; background:#fff5eb !important; }
+    .day.warn .daychip{ background:#c2410c !important; }
+
+    .critical{
+      background:#fff1e0 !important;
+      border-left:5px solid #c2410c !important;
+      page-break-inside:avoid !important;
+      font-size:9.3pt !important;
+    }
+
+    /* FILES: turn cards into a simple list */
+    .files{ display:block !important; }
+    .file-card{
+      display:block !important;
+      padding:6px 10px !important;
+      margin-bottom:5px !important;
+      border:1px solid #ccd7e6 !important;
+      border-radius:6px !important;
+      background:#fbfdff !important;
+      box-shadow:none !important;
+      transform:none !important;
+      page-break-inside:avoid !important;
+    }
+    .file-card:hover{ transform:none !important; box-shadow:none !important; }
+    .file-card .ftitle{ font-size:9.8pt !important; }
+    .file-card .fname{ background:transparent !important; padding:0 !important; font-size:8.5pt !important; }
+
+    /* COSTS */
+    .cost-wrap{
+      border:1px solid #ccd7e6 !important;
+      border-radius:6px !important;
+    }
+    table{ font-size:9pt !important; }
+    th{ background:#0b3b78 !important; color:#fff !important; font-size:8pt !important; padding:5px 6px !important; }
+    td{ padding:5px 6px !important; }
+    tbody tr:nth-child(even) td{ background:#f6f9fd !important; }
+    tbody tr:hover td{ background:transparent !important; }
+    .num{ color:#075e3f !important; }
+
+    .total-box{
+      background:#f0fbf6 !important;
+      color:#14181f !important;
+      border:2px solid #075e3f !important;
+      box-shadow:none !important;
+      page-break-inside:avoid !important;
+      padding:12px 14px !important;
+    }
+    .total-box .grand{
+      color:#075e3f !important;
+      text-shadow:none !important;
+      font-size:13pt !important;
+    }
+    .total-box .note{ color:#2e5a48 !important; }
+
+    /* NOTES */
+    .notes-list li{
+      background:#fafafa !important;
+      border-left:6px solid #0b6bcb !important;
+      page-break-inside:avoid !important;
+      font-size:9.5pt !important;
+      padding:8px 10px !important;
+    }
+    .notes-list li:nth-child(3n+2){ background:#f2fdff !important; border-left-color:#0891b2 !important; }
+    .notes-list li:nth-child(3n+3){ background:#faf7ff !important; border-left-color:#8338ec !important; }
+
+    footer{
+      padding:10px !important;
+      font-size:8.5pt !important;
+      color:#5b6478 !important;
+    }
   }
 </style>
 </head>
 <body>
 
+<!-- ============ FLOATING PRINT TOOLBAR ============ -->
+<div class="print-toolbar no-print" id="printToolbar">
+  <div class="pt-title">🖨️ Print / Save as PDF</div>
+  <label><input type="checkbox" data-target="itinerary" checked> Itinerary</label>
+  <label><input type="checkbox" data-target="files" checked> Booking Files</label>
+  <label><input type="checkbox" data-target="costs" checked> Costs</label>
+  <label><input type="checkbox" data-target="notes" checked> Travel Notes</label>
+  <div class="pt-actions">
+    <button class="btn-print" onclick="printSelected()">Print Selected</button>
+    <button class="btn-all" onclick="printAll()">Everything</button>
+  </div>
+  <div class="pt-hint">Tip: In the print dialog choose <em>Save as PDF</em> for a digital copy.</div>
+</div>
+
 <header>
   <span class="badge">✈️ Wanderlust Activated ✈️</span>
   <h1>Family Holiday 2026 🎉</h1>
-  <p><strong>2 adults + 3 little adventurers</strong> (0, 4 & 7 years old)</p>
-  <p>Sun, snow-capped mountains, tapas & train rides 🚆🏔️🥘</p>
+  <p><strong>2 adults + 3 little adventurers</strong> (0, 4 &amp; 7 years old)</p>
+  <p>Waterfalls, alpine valleys, tapas &amp; train rides 🚆🏔️🥘</p>
   <div class="hero-route">
     <span>🇩🇪 Dresden</span>
     <span class="arrow">→</span>
@@ -389,42 +634,53 @@
           <li><strong>21:02</strong> EC 458 leaves <span class="highlight">Dresden Hbf</span></li>
           <li>Seats: Wg. 257, Pl. 32–36 (family compartment booked 🎟️)</li>
           <li>Pack: snacks, water, wet wipes, blankets, headphones, tablets, favourite cuddly toy 🧸</li>
-          <li>Keep passports + PDFs printed & offline</li>
+          <li>Keep passports + PDFs printed &amp; offline</li>
         </ul>
       </div>
 
       <div class="day city">
         <span class="daychip">Day 2 · Mon 12 Oct</span>
-        <h3>🇨🇭 Hello Zurich!</h3>
-        <p class="tagline">Alps in the distance, chocolate in hand</p>
+        <h3>🇨🇭 Hello Zurich → Rhine Falls (Rheinfall)</h3>
+        <p class="tagline">Europe's largest waterfall on arrival day 🌊</p>
         <ul>
-          <li><strong>09:05</strong> Arrive Zürich HB — drop bags in lockers if early</li>
-          <li>Check-in from <strong>15:00</strong> at VISIONAPARTMENTS Albertstrasse (self check-in, no reception)</li>
+          <li><strong>09:05</strong> Arrive Zürich HB — store luggage in station lockers 🧳</li>
+          <li>Train to <strong>Schloss Laufen am Rheinfall</strong> / Neuhausen (~50 min via Winterthur)</li>
+          <li>View the falls from the Schloss Laufen platforms; boat trip to the rock if running ⛵</li>
+          <li>Return to Zürich — check in from <strong>15:00</strong> at VISIONAPARTMENTS Albertstrasse (self check-in)</li>
           <li>Upload ID using booking <strong>B891286</strong> + last name <strong>Chowdhury</strong></li>
-          <li>Easy first day: Lake Zürich, Old Town, Bahnhofstrasse, Lindt Home of Chocolate 🍫</li>
-          <li>Quiet hours 22:00–06:00 😴</li>
+          <li>Quiet hours 22:00–06:00 😴 — light dinner &amp; early night after the overnight train</li>
         </ul>
+        <div class="critical">
+          <strong>Flexibility tip:</strong> Big first day after a night on the train. If the children are exhausted, do the falls and skip the rest — the waterfall is the highlight.
+        </div>
       </div>
 
       <div class="day sun">
         <span class="daychip">Day 3 · Tue 13 Oct</span>
-        <h3>🏔️ Zurich Family Day</h3>
-        <p class="tagline">Pick your own adventure</p>
+        <h3>🏔️ Lauterbrunnen day trip — Swiss Alps</h3>
+        <p class="tagline">Valley of 72 waterfalls · <strong>SBB day ticket in use</strong> 🎫</p>
         <ul>
-          <li><strong>Option A:</strong> Zürich Zoo 🦁 (kids will love it)</li>
-          <li><strong>Option B:</strong> Swiss Museum of Transport, Lucerne 🚂</li>
-          <li><strong>Option C:</strong> Uetliberg hike + playground + lake boat ride ⛵</li>
-          <li>Keep afternoon flexible — naps are sacred for a 0 & 4 year old</li>
+          <li>Early start: Zürich → Bern → Interlaken Ost → Lauterbrunnen (~2h 15m each way)</li>
+          <li>Staubbach Falls &amp; the village walk through the Lauterbrunnen valley</li>
+          <li><strong>Trümmelbach Falls:</strong> bus 141 from Lauterbrunnen station (~10 min) — glacier falls inside the mountain (bring a light rain jacket!)</li>
+          <li><strong>Optional upgrade:</strong> cable car Grütschalp → train to Mürren for Eiger, Mönch &amp; Jungfrau views</li>
+          <li>Return to Zürich in the evening — this is a full day out</li>
+          <li>7-year-old travels free with a parent thanks to the <strong>SBB Junior-Karte</strong> 👧</li>
         </ul>
+        <div class="critical">
+          <strong>Day ticket:</strong> Use your SBB day ticket / Saver Day Pass for the whole journey. Must be valid on the travel date and carried with a photo ID.
+        </div>
       </div>
 
       <div class="day travel">
         <span class="daychip">Day 4 · Wed 14 Oct</span>
-        <h3>✈️ Zürich → Barcelona → Castelldefels</h3>
-        <p class="tagline">From alpine air to Mediterranean breeze</p>
+        <h3>✈️ More Zurich → fly to Barcelona</h3>
+        <p class="tagline">Last Swiss morning, then off to Spain</p>
         <ul>
-          <li>Check out by <strong>10:00</strong></li>
-          <li>Fly <strong>ZRH → BCN</strong> (Vueling) — arrive at airport ~3 hrs early with 3 kids 👨‍👩‍👧‍👦</li>
+          <li>Check out by <strong>10:00</strong> — store luggage at Zürich HB lockers if exploring</li>
+          <li>Zurich highlights close to the station: Old Town (Altstadt), Grossmünster, Lindenhof viewpoint, Lake Zürich promenade 🌅</li>
+          <li>Head to ZRH about <strong>3 hrs before departure</strong> (Zürich HB → ZRH ~10–12 min by train)</li>
+          <li>Fly <strong>ZRH → BCN</strong> (Vueling) 👨‍👩‍👧‍👦</li>
           <li>Transfer BCN → Castelldefels: train, bus, or taxi 🚕</li>
           <li>Address: <strong>Carrer del Doctor Ferran, 5, 08860 Castelldefels</strong></li>
           <li>Airbnb check-in from <strong>16:00</strong> — keypad self check-in, ask host for code</li>
@@ -433,7 +689,7 @@
 
       <div class="day beach">
         <span class="daychip">Days 5–8 · 15–18 Oct</span>
-        <h3>🏖️ Barcelona & Castelldefels Bliss</h3>
+        <h3>🏖️ Barcelona &amp; Castelldefels Bliss</h3>
         <p class="tagline">Sun, sand, tapas and Gaudí magic</p>
         <ul>
           <li>Castelldefels beach = perfect for little ones 🌊</li>
@@ -502,7 +758,7 @@
       </a>
 
       <a class="file-card" href="sbb tagesticket.pdf" target="_blank" rel="noopener">
-        <span class="ftitle">🎫 SBB Day Ticket (info only)</span>
+        <span class="ftitle">🎫 SBB Day Ticket</span>
         <span class="fname">sbb tagesticket.pdf</span>
         <span class="fbtn">Open PDF →</span>
       </a>
@@ -555,21 +811,28 @@
           <tr>
             <td>12–14 Oct</td>
             <td>🏨 Zurich apartment</td>
-            <td>VISIONAPARTMENTS Albertstrasse, 2 nights, 5 guests</td>
+            <td>VISIONAPARTMENTS Albertstrasse, 2 nights, 5 guests, city tax included</td>
             <td class="num">CHF 234.17</td>
             <td class="num">≈ €252.00</td>
           </tr>
           <tr>
             <td>1 year</td>
             <td>👧 SBB Junior-Karte</td>
-            <td>Child travels free with a parent holding a valid ticket</td>
+            <td>Child travels free with a parent holding a valid ticket — used for the Lauterbrunnen day trip</td>
             <td class="num">CHF 30.00</td>
             <td class="num">≈ €32.28</td>
           </tr>
           <tr>
+            <td>13 Oct</td>
+            <td>🎫 SBB day ticket</td>
+            <td>Day ticket / Saver Day Pass for Lauterbrunnen. No price or date shown in the uploaded PDF — add the actual amount you paid.</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+          </tr>
+          <tr>
             <td>14 Oct</td>
             <td>✈️ ZRH → BCN</td>
-            <td>Vueling, 5 passengers, baggage + fees</td>
+            <td>Vueling, 5 passengers, baggage + fees, Smily points discount applied</td>
             <td class="num">€294.70</td>
             <td class="num">€294.70</td>
           </tr>
@@ -594,27 +857,20 @@
             <td class="num">€67.98</td>
             <td class="num">€67.98</td>
           </tr>
-          <tr>
-            <td>—</td>
-            <td>🎫 SBB day ticket</td>
-            <td>No price/date in the PDF — excluded from total</td>
-            <td class="num">—</td>
-            <td class="num">—</td>
-          </tr>
         </tbody>
       </table>
     </div>
 
     <div class="total-box">
       <p>🇪🇺 <strong>EUR items subtotal:</strong> €1,605.50</p>
-      <p>🇨🇭 <strong>CHF items subtotal:</strong> CHF 264.17</p>
+      <p>🇨🇭 <strong>CHF items subtotal:</strong> CHF 264.17 (hotel + Junior-Karte)</p>
       <p>💱 <strong>CHF converted:</strong> ≈ €284.25 (using the hotel confirmation rate)</p>
       <p class="grand">🎉 Estimated Grand Total: ≈ €1,889.75</p>
-      <p class="note">≈ €378 per traveller · Card/FX fees may tweak this slightly.</p>
+      <p class="note">≈ €378 per traveller · <strong>SBB day ticket is NOT included</strong> — add the actual amount you paid. Card/FX fees may tweak this slightly.</p>
     </div>
 
     <p class="sub" style="margin-top:16px;background:#fff7ed;border-left:5px solid var(--coral);padding:12px;border-radius:10px">
-      <strong>Note:</strong> Zurich city tax (€3.76 × 5 guests × 2 nights = €37.60) appears already included in the final price. Extra beds/supplements are not included.
+      <strong>Note:</strong> Zurich city tax (€3.76 × 5 guests × 2 nights = €37.60) appears already included in the final price. Extra beds/supplements are not included. The SBB day ticket price is not visible in the uploaded PDF — check your SBB account or receipt.
     </p>
   </section>
 
@@ -623,13 +879,16 @@
     <h2><span class="emoji">📝</span> Pro Family-Traveller Notes</h2>
     <ul class="notes-list">
       <li><span class="ic">🔑</span><div><strong>Zurich self check-in:</strong> No reception. Upload ID/passport before arrival using booking <strong>B891286</strong> and last name <strong>Chowdhury</strong>. Access code arrives on arrival day.</div></li>
+      <li><span class="ic">🌊</span><div><strong>Rhine Falls (12 Oct):</strong> Schloss Laufen viewing platforms are the best family viewpoint. Boat trips to the rock only run in season and depend on water levels — check on the day.</div></li>
+      <li><span class="ic">🏔️</span><div><strong>Lauterbrunnen (13 Oct):</strong> Long day from Zurich (~2h 15m each way). Bring snacks, water, and warm layers — the valley is cooler than Zurich. Trümmelbach Falls is inside the mountain — bring a light rain jacket.</div></li>
+      <li><span class="ic">🎫</span><div><strong>SBB day ticket:</strong> Used for the Lauterbrunnen trip. Confirm whether it also covers the Rhine Falls route, or buy a separate ticket for 12 Oct. Valid only with a photo ID.</div></li>
       <li><span class="ic">🏠</span><div><strong>Possible apartment swap:</strong> Messages mention an alternative at Cramerstrasse 8, 2nd floor. Your reply says no change needed — double-check the final address with VISIONAPARTMENTS.</div></li>
       <li><span class="ic">🚭</span><div><strong>Zurich rules:</strong> No smoking, no parties, quiet hours 22:00–06:00, no daily cleaning, toiletries are arrival-only.</div></li>
       <li><span class="ic">👨‍👩‍👧‍👦</span><div><strong>Airbnb:</strong> Non-refundable. House rules show "4 guests maximum" — confirm the infant is allowed with your host.</div></li>
       <li><span class="ic">🧳</span><div><strong>Flights:</strong> Vueling invoices include baggage, but verify the allowance for all 5 passengers. Arrive 3 hrs early.</div></li>
       <li><span class="ic">🎫</span><div><strong>Trains:</strong> DB tickets need a photo ID. The Berlin → Dresden ticket is non-refundable with Zugbindung (train-bound).</div></li>
-      <li><span class="ic">👧</span><div><strong>Junior-Karte:</strong> 7-year-old travels free with a parent holding a valid ticket. Verify SBB rules for the 0 & 4-year-olds.</div></li>
-      <li><span class="ic">💱</span><div><strong>Money:</strong> CHF in Switzerland, EUR in Spain & Germany. Tell your bank you're travelling and carry a little cash.</div></li>
+      <li><span class="ic">👧</span><div><strong>Junior-Karte:</strong> 7-year-old travels free with a parent holding a valid ticket. Verify SBB rules for the 0 &amp; 4-year-olds.</div></li>
+      <li><span class="ic">💱</span><div><strong>Money:</strong> CHF in Switzerland, EUR in Spain &amp; Germany. Tell your bank you're travelling and carry a little cash.</div></li>
       <li><span class="ic">📱</span><div><strong>Offline backup:</strong> Print all bookings + passports + insurance. Save everything on at least two phones.</div></li>
     </ul>
   </section>
@@ -639,6 +898,28 @@
 <footer>
   Made with <span class="heart">❤️</span> for the Chowdhury family adventure · Verify all times, prices and baggage before you fly ✈️
 </footer>
+
+<script>
+  function applySelection() {
+    document.querySelectorAll('#printToolbar input[type="checkbox"]').forEach(function(cb){
+      var sec = document.getElementById(cb.dataset.target);
+      if (sec) sec.classList.toggle('no-print', !cb.checked);
+    });
+  }
+  function printSelected() {
+    applySelection();
+    window.print();
+  }
+  function printAll() {
+    document.querySelectorAll('main section').forEach(function(s){ s.classList.remove('no-print'); });
+    document.querySelectorAll('#printToolbar input[type="checkbox"]').forEach(function(cb){ cb.checked = true; });
+    window.print();
+  }
+  // Reset after printing so screen view is restored
+  window.addEventListener('afterprint', function(){
+    document.querySelectorAll('main section').forEach(function(s){ s.classList.remove('no-print'); });
+  });
+</script>
 
 </body>
 </html>
