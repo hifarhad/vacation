@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#8338ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Holiday 2026">
 <title>🌴 Family Holiday 2026 – Zurich & Barcelona 🎉</title>
 <style>
   :root{
@@ -17,12 +20,12 @@
     --muted:#6b6480;
     --card:#ffffff;
     --line:#ffe0b2;
+    --chip-bg:#eef4fb;
   }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth;scroll-padding-top:70px}
   body{
     margin:0;
-    padding-bottom:110px;
     font-family:'Trebuchet MS','Segoe UI',system-ui,-apple-system,sans-serif;
     background:
       radial-gradient(circle at 10% 0%, #ffe5b4 0%, transparent 45%),
@@ -31,7 +34,39 @@
       var(--sand);
     color:var(--ink);
     line-height:1.6;
+    font-size:16px;
+    overflow-x:hidden;
   }
+
+  /* ==== STICKY QUICK NAV ==== */
+  .quicknav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    display:flex;
+    gap:6px;
+    justify-content:center;
+    flex-wrap:wrap;
+    padding:8px 10px;
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 4px 14px rgba(131,56,236,.08);
+  }
+  .quicknav a{
+    text-decoration:none;
+    color:#2a1a5e;
+    font-weight:700;
+    font-size:.82rem;
+    padding:6px 12px;
+    border-radius:999px;
+    background:#f4eeff;
+    border:1px solid #e7d8ff;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .quicknav a:hover{background:var(--purple);color:#fff;transform:translateY(-1px)}
+  .quicknav a:active{transform:translateY(0)}
 
   /* ==== HERO ==== */
   header{
@@ -41,7 +76,7 @@
     background-size:300% 300%;
     animation:gradientShift 14s ease infinite;
     color:#fff;
-    padding:48px 20px 60px;
+    padding:42px 18px 52px;
     text-align:center;
     border-bottom:6px solid var(--sun);
   }
@@ -53,59 +88,69 @@
   header::before,header::after{
     content:"✈️ 🌞 🏖️ 🚆 🎡 🍦 🥐 🐠";
     position:absolute;
-    font-size:1.6rem;
+    font-size:1.5rem;
     opacity:.25;
     white-space:nowrap;
     animation:float 20s linear infinite;
   }
   header::before{top:14px;left:-10%;}
   header::after{bottom:14px;right:-10%;animation-delay:-10s;}
-  @keyframes float{
-    from{transform:translateX(0)}
-    to{transform:translateX(-60%)}
-  }
+  @keyframes float{from{transform:translateX(0)}to{transform:translateX(-60%)}}
   header .badge{
     display:inline-block;
     background:rgba(255,255,255,.2);
     border:1px solid rgba(255,255,255,.4);
     padding:5px 14px;
     border-radius:999px;
-    font-size:.85rem;
+    font-size:.78rem;
     letter-spacing:2px;
     text-transform:uppercase;
-    margin-bottom:12px;
+    margin-bottom:10px;
     backdrop-filter:blur(6px);
   }
   header h1{
-    margin:6px 0 14px;
-    font-size:clamp(1.9rem,5vw,3.2rem);
+    margin:6px 0 10px;
+    font-size:clamp(1.7rem,6vw,3rem);
     text-shadow:0 4px 22px rgba(0,0,0,.35);
     letter-spacing:.5px;
   }
-  header p{margin:6px 0;font-size:1.05rem;opacity:.97}
+  header p{margin:5px 0;font-size:1rem;opacity:.97}
+  header .countdown{
+    display:inline-block;
+    margin-top:12px;
+    background:rgba(0,0,0,.25);
+    border:1px solid rgba(255,255,255,.3);
+    padding:8px 16px;
+    border-radius:999px;
+    font-weight:800;
+    font-size:.9rem;
+    letter-spacing:.5px;
+    backdrop-filter:blur(6px);
+  }
   .hero-route{
     display:inline-flex;
     flex-wrap:wrap;
     justify-content:center;
-    gap:8px 14px;
-    margin-top:18px;
+    gap:6px 12px;
+    margin-top:14px;
     background:rgba(0,0,0,.2);
-    padding:12px 18px;
+    padding:10px 16px;
     border-radius:16px;
     font-weight:700;
+    font-size:.92rem;
     backdrop-filter:blur(4px);
   }
   .hero-route span{white-space:nowrap}
   .hero-route .arrow{color:var(--sun)}
 
-  main{max-width:1180px;margin:0 auto;padding:26px 16px 80px}
+  main{max-width:1180px;margin:0 auto;padding:22px 14px 80px}
 
   /* ==== SECTIONS ==== */
   section{
     background:var(--card);
     border-radius:22px;
-    padding:26px 22px;
-    margin:26px 0;
+    padding:22px 18px;
+    margin:22px 0;
     border:2px solid var(--line);
     box-shadow:0 14px 40px rgba(131,56,236,.10);
     position:relative;
@@ -124,15 +169,16 @@
     pointer-events:none;
   }
   h2{
-    margin:0 0 18px;
-    font-size:clamp(1.4rem,3.4vw,1.9rem);
+    margin:0 0 16px;
+    font-size:clamp(1.25rem,4.2vw,1.8rem);
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:10px;
     color:#2a1a5e;
+    flex-wrap:wrap;
   }
   h2 .emoji{
-    font-size:1.6rem;
+    font-size:1.5rem;
     filter:drop-shadow(0 3px 4px rgba(0,0,0,.15));
   }
   h2::after{
@@ -141,54 +187,77 @@
     height:6px;
     border-radius:6px;
     background:linear-gradient(90deg,var(--pink),var(--sun),var(--teal));
+    min-width:40px;
   }
-  .sub{color:var(--muted);margin-top:-8px;margin-bottom:18px}
+  .sub{color:var(--muted);margin-top:-8px;margin-bottom:16px;font-size:.94rem}
 
   /* ==== DAY CARDS ==== */
   .timeline{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:18px;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:16px;
   }
   .day{
     position:relative;
     border-radius:18px;
-    padding:20px 18px 18px;
+    padding:18px 16px 16px;
     background:linear-gradient(180deg,#ffffff,#fff8f0);
     border:2px dashed #ffd5a1;
     transition:transform .25s ease, box-shadow .25s ease;
     overflow:hidden;
   }
   .day:hover{
-    transform:translateY(-6px) rotate(-.4deg);
-    box-shadow:0 18px 34px rgba(251,86,7,.18);
+    transform:translateY(-4px);
+    box-shadow:0 14px 28px rgba(251,86,7,.18);
     border-color:var(--coral);
+  }
+  .day.today{
+    border-style:solid;
+    border-color:var(--coral);
+    box-shadow:0 0 0 4px rgba(255,183,3,.35), 0 14px 28px rgba(251,86,7,.22);
+    animation:pulseGlow 2.4s ease-in-out infinite;
+  }
+  @keyframes pulseGlow{
+    0%,100%{box-shadow:0 0 0 4px rgba(255,183,3,.35), 0 14px 28px rgba(251,86,7,.22)}
+    50%{box-shadow:0 0 0 8px rgba(255,183,3,.15), 0 14px 28px rgba(251,86,7,.22)}
   }
   .day .daychip{
     display:inline-block;
     background:linear-gradient(135deg,var(--pink),var(--coral));
     color:#fff;
-    padding:6px 14px;
+    padding:5px 12px;
     border-radius:999px;
-    font-size:.8rem;
+    font-size:.74rem;
     font-weight:800;
     letter-spacing:1px;
     text-transform:uppercase;
-    margin-bottom:10px;
+    margin-bottom:8px;
     box-shadow:0 6px 14px rgba(255,0,110,.35);
   }
+  .day .todaybadge{
+    display:none;
+    margin-left:6px;
+    background:var(--sun);
+    color:#3a1d00;
+    padding:5px 10px;
+    border-radius:999px;
+    font-size:.72rem;
+    font-weight:800;
+    letter-spacing:.5px;
+  }
+  .day.today .todaybadge{display:inline-block}
   .day h3{
-    margin:6px 0 10px;
-    font-size:1.12rem;
+    margin:6px 0 8px;
+    font-size:1.08rem;
     color:#1a1433;
   }
   .day ul{margin:8px 0 0;padding-left:20px}
-  .day li{margin-bottom:6px}
+  .day li{margin-bottom:5px}
   .day .tagline{
-    font-size:.9rem;
+    font-size:.88rem;
     color:var(--muted);
     font-style:italic;
-    margin-bottom:8px;
+    margin-bottom:6px;
   }
   .day.sun{background:linear-gradient(180deg,#fffdf3,#ffefc8)}
   .day.beach{background:linear-gradient(180deg,#f0fbff,#d9f3ff)}
@@ -207,7 +276,7 @@
     padding:2px 8px;
     border-radius:6px;
     font-weight:700;
-    font-size:.85rem;
+    font-size:.82rem;
     margin-right:4px;
   }
   .critical{
@@ -216,7 +285,7 @@
     padding:10px 12px;
     border-radius:10px;
     margin-top:10px;
-    font-size:.9rem;
+    font-size:.88rem;
     color:#5a2a00;
   }
 
@@ -226,12 +295,12 @@
     overflow:hidden;
     border:2px solid #ffd5a1;
   }
-  table{width:100%;border-collapse:collapse;font-size:.94rem;background:#fff}
-  th,td{padding:12px 10px;vertical-align:top;text-align:left;border-bottom:1px solid #ffeacc}
+  table{width:100%;border-collapse:collapse;font-size:.9rem;background:#fff}
+  th,td{padding:10px 9px;vertical-align:top;text-align:left;border-bottom:1px solid #ffeacc}
   th{
     background:linear-gradient(135deg,var(--purple),var(--blue));
     color:#fff;
-    font-size:.82rem;
+    font-size:.74rem;
     letter-spacing:.6px;
     text-transform:uppercase;
   }
@@ -239,11 +308,11 @@
   tbody tr:hover td{background:#fff2d9}
   .num{white-space:nowrap;font-weight:800;color:#0b6b3a}
   .total-box{
-    margin-top:20px;
+    margin-top:18px;
     background:linear-gradient(135deg,#06d6a0,#3a86ff);
     color:#fff;
     border-radius:18px;
-    padding:22px;
+    padding:20px;
     box-shadow:0 14px 30px rgba(6,214,160,.35);
     position:relative;
     overflow:hidden;
@@ -251,26 +320,26 @@
   .total-box::before{
     content:"💸";
     position:absolute;
-    font-size:8rem;
+    font-size:7rem;
     right:-20px;
     top:-30px;
     opacity:.18;
   }
-  .total-box p{margin:6px 0}
+  .total-box p{margin:5px 0;position:relative}
   .total-box .grand{
-    font-size:1.5rem;
+    font-size:1.35rem;
     font-weight:900;
-    margin-top:12px;
+    margin-top:10px;
     text-shadow:0 3px 10px rgba(0,0,0,.25);
     letter-spacing:.5px;
   }
-  .total-box .note{font-size:.88rem;opacity:.95}
+  .total-box .note{font-size:.85rem;opacity:.95}
 
   /* ==== FILES ==== */
   .files{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:14px;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:12px;
   }
   .file-card{
     display:flex;
@@ -279,7 +348,7 @@
     background:linear-gradient(180deg,#ffffff,#f6f0ff);
     border:2px solid #e7d8ff;
     border-radius:16px;
-    padding:16px;
+    padding:14px;
     text-decoration:none;
     color:inherit;
     transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
@@ -287,9 +356,9 @@
     overflow:hidden;
   }
   .file-card:hover{
-    transform:translateY(-5px) scale(1.01);
+    transform:translateY(-4px);
     border-color:var(--purple);
-    box-shadow:0 16px 30px rgba(131,56,236,.22);
+    box-shadow:0 14px 26px rgba(131,56,236,.22);
   }
   .file-card .ftitle{
     font-weight:800;
@@ -297,14 +366,14 @@
     display:flex;
     align-items:center;
     gap:8px;
-    font-size:.98rem;
+    font-size:.95rem;
   }
   .file-card .fname{
-    font-size:.82rem;
+    font-size:.78rem;
     color:var(--muted);
     word-break:break-word;
     background:#f4eeff;
-    padding:6px 10px;
+    padding:6px 9px;
     border-radius:8px;
     font-family:Consolas,Monaco,monospace;
   }
@@ -312,30 +381,226 @@
     align-self:flex-start;
     background:linear-gradient(135deg,var(--pink),var(--coral));
     color:#fff;
-    padding:7px 16px;
+    padding:6px 14px;
     border-radius:999px;
     font-weight:800;
-    font-size:.82rem;
+    font-size:.78rem;
     letter-spacing:.5px;
     box-shadow:0 8px 16px rgba(255,0,110,.3);
   }
+
+  /* ==== EMERGENCY CARD ==== */
+  .emergency{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:12px;
+  }
+  .emg-item{
+    background:linear-gradient(180deg,#fff,#fff5f5);
+    border:2px solid #ffd7d7;
+    border-radius:14px;
+    padding:14px;
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .emg-item .ic{
+    font-size:1.5rem;
+    line-height:1;
+    flex:0 0 auto;
+  }
+  .emg-item strong{display:block;color:#a02b2b;font-size:.9rem;margin-bottom:2px}
+  .emg-item .val{
+    font-weight:700;
+    color:#2a1a5e;
+    font-size:.95rem;
+    word-break:break-word;
+  }
+  .emg-item .meta{font-size:.82rem;color:var(--muted);margin-top:2px}
+
+  /* ==== CHECKLIST ==== */
+  .checklist{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:12px;
+  }
+  .check-group{
+    background:linear-gradient(180deg,#fff,#fffaf0);
+    border:2px dashed #ffd5a1;
+    border-radius:14px;
+    padding:14px;
+  }
+  .check-group h4{
+    margin:0 0 8px;
+    font-size:.95rem;
+    color:#2a1a5e;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .check-group ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+    font-size:.88rem;
+  }
+  .check-group li{
+    padding:4px 0 4px 22px;
+    position:relative;
+    color:#2a2a2a;
+  }
+  .check-group li::before{
+    content:"☐";
+    position:absolute;
+    left:0;
+    color:var(--purple);
+    font-weight:900;
+    font-size:1rem;
+  }
+
+  /* ==== SIGHTS TRACKER ==== */
+  .tracker{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.9rem;
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+    border:2px solid #e7d8ff;
+  }
+  .tracker th{
+    background:linear-gradient(135deg,var(--purple),var(--blue));
+    color:#fff;
+    font-size:.74rem;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    padding:9px 10px;
+    text-align:left;
+  }
+  .tracker td{
+    padding:9px 10px;
+    border-bottom:1px solid #f0e6ff;
+  }
+  .tracker tr:last-child td{border-bottom:none}
+  .tracker tr:nth-child(even) td{background:#faf7ff}
+  .status{
+    display:inline-block;
+    padding:3px 9px;
+    border-radius:999px;
+    font-size:.76rem;
+    font-weight:800;
+    white-space:nowrap;
+  }
+  .status.booked{background:#d1fae5;color:#065f46}
+  .status.tobook{background:#fef3c7;color:#92400e}
+  .status.check{background:#dbeafe;color:#1e40af}
+
+  /* ==== DAILY BUDGET ==== */
+  .budget{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:12px;
+  }
+  .budget-card{
+    background:linear-gradient(180deg,#f0fdf4,#ecfeff);
+    border:2px solid #b9e6d0;
+    border-radius:14px;
+    padding:14px;
+  }
+  .budget-card h4{
+    margin:0 0 6px;
+    font-size:.95rem;
+    color:#065f46;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .budget-card .amt{
+    font-size:1.2rem;
+    font-weight:900;
+    color:#065f46;
+    margin-bottom:6px;
+  }
+  .budget-card p{margin:3px 0;font-size:.85rem;color:#2e5a48}
 
   /* ==== NOTES ==== */
   .notes-list{list-style:none;padding:0;margin:0}
   .notes-list li{
     display:flex;
     gap:12px;
-    padding:12px 14px;
+    padding:11px 13px;
     border-radius:12px;
-    margin-bottom:10px;
+    margin-bottom:9px;
     background:linear-gradient(90deg,#fff9ec,#fff);
     border-left:6px solid var(--sun);
-    font-size:.95rem;
+    font-size:.92rem;
   }
   .notes-list li:nth-child(3n+2){border-left-color:var(--teal);background:linear-gradient(90deg,#effff8,#fff)}
   .notes-list li:nth-child(3n+3){border-left-color:var(--pink);background:linear-gradient(90deg,#fff0f7,#fff)}
-  .notes-list .ic{font-size:1.3rem;line-height:1}
+  .notes-list .ic{font-size:1.3rem;line-height:1;flex:0 0 auto}
 
+  /* ==== WEATHER STRIP ==== */
+  .weather{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:12px;
+  }
+  .weather-card{
+    border-radius:14px;
+    padding:14px;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+  .weather-card h4{margin:0 0 6px;font-size:.95rem;letter-spacing:.3px}
+  .weather-card .temp{font-size:1.4rem;font-weight:900;margin:4px 0}
+  .weather-card p{margin:2px 0;font-size:.85rem;opacity:.95}
+  .weather-card.zurich{background:linear-gradient(135deg,#3a86ff,#8338ec)}
+  .weather-card.alps{background:linear-gradient(135deg,#06d6a0,#0891b2)}
+  .weather-card.spain{background:linear-gradient(135deg,#ffb703,#fb5607)}
+  .weather-card::after{
+    content:"";
+    position:absolute;
+    width:120px;height:120px;
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    right:-30px;bottom:-30px;
+  }
+
+  /* ==== COLLAPSIBLE ==== */
+  details.collapse{
+    border-radius:18px;
+    margin:20px 0;
+    background:#fff;
+    border:2px solid var(--line);
+    box-shadow:0 10px 30px rgba(131,56,236,.08);
+    overflow:hidden;
+  }
+  details.collapse > summary{
+    cursor:pointer;
+    list-style:none;
+    padding:16px 18px;
+    font-weight:800;
+    font-size:1.05rem;
+    color:#2a1a5e;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:linear-gradient(90deg,#f4eeff,#fff);
+    border-bottom:1px solid #eee;
+  }
+  details.collapse > summary::-webkit-details-marker{display:none}
+  details.collapse > summary::after{
+    content:"▾";
+    margin-left:auto;
+    font-size:1.2rem;
+    color:var(--purple);
+    transition:transform .2s ease;
+  }
+  details.collapse[open] > summary::after{transform:rotate(180deg)}
+  details.collapse > .body{padding:18px}
+
+  /* ==== FOOTER ==== */
   footer{
     text-align:center;
     padding:26px 16px 40px;
@@ -350,265 +615,143 @@
     letter-spacing:.3px;
   }
 
-  /* ==== PRINT TOOLBAR (screen only) ==== */
-  .print-toolbar{
-    position:fixed;
-    right:18px;
-    bottom:18px;
-    z-index:9999;
-    background:#ffffff;
-    border:2px solid var(--purple);
-    border-radius:16px;
-    padding:12px 14px;
-    box-shadow:0 14px 34px rgba(131,56,236,.28);
-    font-size:.88rem;
-    max-width:260px;
-    color:var(--ink);
-  }
-  .print-toolbar .pt-title{
-    font-weight:800;
-    color:#2a1a5e;
-    margin-bottom:8px;
-    font-size:.95rem;
-    letter-spacing:.3px;
-  }
-  .print-toolbar label{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    padding:3px 0;
-    cursor:pointer;
-    user-select:none;
-  }
-  .print-toolbar input[type=checkbox]{
-    accent-color:var(--purple);
-    width:16px;height:16px;
-  }
-  .print-toolbar .pt-actions{
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px;
-    margin-top:10px;
-  }
-  .print-toolbar button{
-    flex:1 1 auto;
-    border:none;
-    cursor:pointer;
-    font-family:inherit;
-    font-weight:800;
-    font-size:.8rem;
-    letter-spacing:.4px;
-    padding:8px 10px;
-    border-radius:999px;
-    color:#fff;
-    transition:transform .15s ease;
-  }
-  .print-toolbar button:hover{transform:translateY(-1px)}
-  .print-toolbar .btn-print{
-    background:linear-gradient(135deg,var(--pink),var(--coral));
-    box-shadow:0 8px 16px rgba(255,0,110,.28);
-  }
-  .print-toolbar .btn-all{
-    background:linear-gradient(135deg,var(--purple),var(--blue));
-    box-shadow:0 8px 16px rgba(58,134,255,.28);
-  }
-  .print-toolbar .pt-hint{
-    margin-top:8px;
-    font-size:.72rem;
-    color:var(--muted);
-    text-align:center;
-    line-height:1.3;
+  /* ==== MOBILE RESPONSIVE ==== */
+  @media (max-width:640px){
+    main{padding:16px 10px 60px}
+    section{padding:16px 12px;border-radius:18px;margin:14px 0}
+    section::before{border-radius:18px}
+    h2{font-size:1.25rem;gap:8px;margin-bottom:12px}
+    h2 .emoji{font-size:1.3rem}
+    header{padding:32px 14px 40px}
+    header h1{font-size:1.6rem}
+    header p{font-size:.92rem}
+    .hero-route{font-size:.82rem;padding:8px 12px;gap:5px 9px}
+    .quicknav{padding:6px;gap:5px}
+    .quicknav a{font-size:.72rem;padding:5px 10px}
+    .timeline{grid-template-columns:1fr;gap:12px}
+    .day{padding:14px 13px 13px;border-radius:16px}
+    .day h3{font-size:1rem}
+    .day .daychip{font-size:.7rem;padding:4px 10px}
+    .sub{font-size:.86rem}
+
+    /* Cost table → stack into label/value */
+    .cost-wrap{border:none;background:transparent;overflow:visible}
+    table.cost-table, table.cost-table thead, table.cost-table tbody,
+    table.cost-table th, table.cost-table td, table.cost-table tr{
+      display:block;
+      width:100%;
+    }
+    table.cost-table thead{display:none}
+    table.cost-table tr{
+      background:#fff;
+      border:2px solid #ffd5a1;
+      border-radius:14px;
+      margin-bottom:10px;
+      padding:12px;
+      box-shadow:0 6px 16px rgba(255,183,3,.12);
+    }
+    table.cost-table td{
+      border:none;
+      padding:5px 0;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      font-size:.88rem;
+    }
+    table.cost-table td::before{
+      content:attr(data-label);
+      font-weight:800;
+      color:#2a1a5e;
+      text-transform:uppercase;
+      font-size:.72rem;
+      letter-spacing:.5px;
+      flex:0 0 40%;
+    }
+    table.cost-table td.num{color:#0b6b3a}
+
+    .total-box{padding:16px;border-radius:14px}
+    .total-box .grand{font-size:1.15rem}
+
+    .files{grid-template-columns:1fr;gap:10px}
+    .file-card{padding:12px;border-radius:14px}
+    .file-card .ftitle{font-size:.9rem}
+    .file-card .fname{font-size:.72rem}
+
+    .emergency{grid-template-columns:1fr;gap:10px}
+    .emg-item{padding:12px}
+
+    .checklist{grid-template-columns:1fr;gap:10px}
+
+    .budget{grid-template-columns:1fr;gap:10px}
+
+    .weather{grid-template-columns:1fr;gap:10px}
+
+    .notes-list li{font-size:.86rem;padding:10px 11px;gap:10px}
+    .notes-list .ic{font-size:1.1rem}
+
+    details.collapse > summary{padding:13px 14px;font-size:.98rem}
+    details.collapse > .body{padding:14px}
+
+    .tracker{font-size:.82rem}
+    .tracker th, .tracker td{padding:8px 8px}
+    .status{font-size:.7rem;padding:2px 7px}
   }
 
-  /* ==== PRINT STYLESHEET ==== */
+  @media (max-width:380px){
+    header h1{font-size:1.4rem}
+    .hero-route{font-size:.76rem}
+    .quicknav a{font-size:.68rem;padding:4px 8px}
+  }
+
+  /* ==== PRINT ==== */
   @media print{
     @page{ size:A4; margin:12mm; }
-
-    *{
-      -webkit-print-color-adjust:exact !important;
-      print-color-adjust:exact !important;
-      animation:none !important;
-      transition:none !important;
-    }
-
-    body{
-      background:#ffffff !important;
-      padding:0 !important;
-      font-size:10.5pt !important;
-    }
-
-    .print-toolbar,
-    .no-print,
-    .file-card .fbtn,
-    header::before,
-    header::after,
-    section::before,
-    .total-box::before,
-    h2::after{
-      display:none !important;
-    }
-
-    /* HERO */
-    header{
-      background:#0b3b78 !important;
-      color:#ffffff !important;
-      padding:18px 20px !important;
-      border-bottom:5px solid #ffb703 !important;
-      text-align:left !important;
-    }
-    header h1{ font-size:22pt !important; text-shadow:none !important; margin:4px 0 6px !important; }
-    header p{ font-size:10pt !important; }
-    header .badge{ background:rgba(255,255,255,.15) !important; border-color:rgba(255,255,255,.35) !important; }
-    .hero-route{ background:rgba(0,0,0,.25) !important; padding:8px 12px !important; }
-
-    main{ max-width:none !important; padding:0 !important; margin:0 !important; }
-
-    section{
-      box-shadow:none !important;
-      border:1px solid #ccd7e6 !important;
-      border-radius:8px !important;
-      padding:12px 14px !important;
-      margin:12px 0 !important;
-      background:#ffffff !important;
-    }
-
-    h2{
-      font-size:14pt !important;
-      margin:0 0 10px !important;
-      padding:5px 10px !important;
-      background:#eef4fb !important;
-      border-left:6px solid #0b6bcb !important;
-      border-radius:4px !important;
-      color:#0b3b78 !important;
-    }
-    h2 .emoji{ font-size:1em !important; }
-
-    /* DAYS: full width, no hover, avoid breaking */
-    .timeline{ display:block !important; }
-    .day{
-      display:block !important;
-      width:100% !important;
-      margin:0 0 8px 0 !important;
-      padding:10px 12px !important;
-      border:1px solid #ccd7e6 !important;
-      border-left:6px solid #0b6bcb !important;
-      border-radius:6px !important;
-      background:#fbfdff !important;
-      box-shadow:none !important;
-      transform:none !important;
-      page-break-inside:avoid !important;
-      break-inside:avoid !important;
-    }
-    .day:hover{ transform:none !important; box-shadow:none !important; }
-    .day .daychip{
-      background:#0b6bcb !important;
-      color:#fff !important;
-      font-size:8pt !important;
-      padding:2px 8px !important;
-      box-shadow:none !important;
-    }
-    .day.travel{ border-left-color:#8338ec !important; background:#faf7ff !important; }
-    .day.travel .daychip{ background:#8338ec !important; }
-    .day.city{ border-left-color:#0b6bcb !important; background:#f6faff !important; }
-    .day.city .daychip{ background:#0b6bcb !important; }
-    .day.sun{ border-left-color:#d97706 !important; background:#fffaf0 !important; }
-    .day.sun .daychip{ background:#d97706 !important; }
-    .day.beach{ border-left-color:#0891b2 !important; background:#f2fdff !important; }
-    .day.beach .daychip{ background:#0891b2 !important; }
-    .day.warn{ border-left-color:#c2410c !important; background:#fff5eb !important; }
-    .day.warn .daychip{ background:#c2410c !important; }
-
-    .critical{
-      background:#fff1e0 !important;
-      border-left:5px solid #c2410c !important;
-      page-break-inside:avoid !important;
-      font-size:9.3pt !important;
-    }
-
-    /* FILES: turn cards into a simple list */
-    .files{ display:block !important; }
-    .file-card{
-      display:block !important;
-      padding:6px 10px !important;
-      margin-bottom:5px !important;
-      border:1px solid #ccd7e6 !important;
-      border-radius:6px !important;
-      background:#fbfdff !important;
-      box-shadow:none !important;
-      transform:none !important;
-      page-break-inside:avoid !important;
-    }
-    .file-card:hover{ transform:none !important; box-shadow:none !important; }
-    .file-card .ftitle{ font-size:9.8pt !important; }
-    .file-card .fname{ background:transparent !important; padding:0 !important; font-size:8.5pt !important; }
-
-    /* COSTS */
-    .cost-wrap{
-      border:1px solid #ccd7e6 !important;
-      border-radius:6px !important;
-    }
-    table{ font-size:9pt !important; }
-    th{ background:#0b3b78 !important; color:#fff !important; font-size:8pt !important; padding:5px 6px !important; }
-    td{ padding:5px 6px !important; }
-    tbody tr:nth-child(even) td{ background:#f6f9fd !important; }
-    tbody tr:hover td{ background:transparent !important; }
-    .num{ color:#075e3f !important; }
-
-    .total-box{
-      background:#f0fbf6 !important;
-      color:#14181f !important;
-      border:2px solid #075e3f !important;
-      box-shadow:none !important;
-      page-break-inside:avoid !important;
-      padding:12px 14px !important;
-    }
-    .total-box .grand{
-      color:#075e3f !important;
-      text-shadow:none !important;
-      font-size:13pt !important;
-    }
-    .total-box .note{ color:#2e5a48 !important; }
-
-    /* NOTES */
-    .notes-list li{
-      background:#fafafa !important;
-      border-left:6px solid #0b6bcb !important;
-      page-break-inside:avoid !important;
-      font-size:9.5pt !important;
-      padding:8px 10px !important;
-    }
-    .notes-list li:nth-child(3n+2){ background:#f2fdff !important; border-left-color:#0891b2 !important; }
-    .notes-list li:nth-child(3n+3){ background:#faf7ff !important; border-left-color:#8338ec !important; }
-
-    footer{
-      padding:10px !important;
-      font-size:8.5pt !important;
-      color:#5b6478 !important;
-    }
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;animation:none !important;transition:none !important}
+    body{background:#fff;font-size:10.5pt}
+    .quicknav{display:none}
+    header{background:#0b3b78 !important;padding:18px 20px !important;border-bottom:5px solid #ffb703 !important;text-align:left !important}
+    header h1{font-size:22pt;text-shadow:none}
+    header .countdown{background:rgba(0,0,0,.3)}
+    header::before,header::after{display:none}
+    section, details.collapse{box-shadow:none;border:1px solid #ccd7e6;border-radius:8px;padding:12px 14px;margin:12px 0;page-break-inside:avoid}
+    section::before, .total-box::before, .weather-card::after{display:none}
+    h2{font-size:14pt;background:#eef4fb;border-left:6px solid #0b6bcb;padding:5px 10px;border-radius:4px}
+    h2::after{display:none}
+    .day{page-break-inside:avoid;border:1px solid #ccd7e6;border-left:6px solid #0b6bcb;border-radius:6px;padding:10px 12px;margin-bottom:8px;background:#fbfdff !important;transform:none !important;box-shadow:none !important}
+    .timeline{display:block}
+    .day .todaybadge{display:none}
+    .file-card{padding:6px 10px;border:1px solid #ccd7e6;border-radius:6px;margin-bottom:5px;page-break-inside:avoid;transform:none !important;box-shadow:none !important}
+    .file-card .fbtn{display:none}
+    .total-box{background:#f0fbf6 !important;color:#14181f !important;border:2px solid #075e3f}
+    .total-box .grand{color:#075e3f;text-shadow:none}
+    .notes-list li, .emg-item, .check-group, .budget-card, .weather-card{page-break-inside:avoid}
+    footer{padding:10px}
+    details.collapse > summary{cursor:default}
+    details.collapse:not([open]) > .body{display:block}
   }
 </style>
 </head>
 <body>
 
-<!-- ============ FLOATING PRINT TOOLBAR ============ -->
-<div class="print-toolbar no-print" id="printToolbar">
-  <div class="pt-title">🖨️ Print / Save as PDF</div>
-  <label><input type="checkbox" data-target="itinerary" checked> Itinerary</label>
-  <label><input type="checkbox" data-target="files" checked> Booking Files</label>
-  <label><input type="checkbox" data-target="costs" checked> Costs</label>
-  <label><input type="checkbox" data-target="notes" checked> Travel Notes</label>
-  <div class="pt-actions">
-    <button class="btn-print" onclick="printSelected()">Print Selected</button>
-    <button class="btn-all" onclick="printAll()">Everything</button>
-  </div>
-  <div class="pt-hint">Tip: In the print dialog choose <em>Save as PDF</em> for a digital copy.</div>
-</div>
+<!-- ============ QUICK NAV ============ -->
+<nav class="quicknav" aria-label="Section navigation">
+  <a href="#itinerary">🗺️ Itinerary</a>
+  <a href="#weather">🌤️ Weather</a>
+  <a href="#packing">🎒 Packing</a>
+  <a href="#sights">🎟️ Sights</a>
+  <a href="#budget">💰 Budget</a>
+  <a href="#emergency">🚨 Emergency</a>
+  <a href="#files">📎 Files</a>
+  <a href="#costs">💸 Costs</a>
+  <a href="#notes">📝 Notes</a>
+</nav>
 
 <header>
   <span class="badge">✈️ Wanderlust Activated ✈️</span>
   <h1>Family Holiday 2026 🎉</h1>
   <p><strong>2 adults + 3 little adventurers</strong> (0, 4 &amp; 7 years old)</p>
   <p>Waterfalls, alpine valleys, tapas &amp; train rides 🚆🏔️🥘</p>
+  <div class="countdown" id="countdown">✨ Loading countdown…</div>
   <div class="hero-route">
     <span>🇩🇪 Dresden</span>
     <span class="arrow">→</span>
@@ -632,43 +775,43 @@
 
     <div class="timeline">
 
-      <div class="day travel">
-        <span class="daychip">Day 1 · Sun 11 Oct</span>
+      <div class="day travel" data-date="2026-10-11">
+        <span class="daychip">Day 1 · Sun 11 Oct</span><span class="todaybadge">Today ✨</span>
         <h3>🚆 Overnight to Zurich</h3>
         <p class="tagline">Pajamas on, adventure begins!</p>
         <ul>
           <li><strong>21:02</strong> EC 458 leaves <span class="highlight">Dresden Hbf</span></li>
           <li>Seats: Wg. 257, Pl. 32–36 (family compartment booked 🎟️)</li>
-          <li>Pack: snacks, water, wet wipes, blankets, headphones, tablets, favourite cuddly toy 🧸</li>
+          <li>Pack: snacks, water, wet wipes, blankets, headphones, tablets, cuddly toy 🧸</li>
           <li>Keep passports + PDFs printed &amp; offline</li>
         </ul>
       </div>
 
-      <div class="day city">
-        <span class="daychip">Day 2 · Mon 12 Oct</span>
+      <div class="day city" data-date="2026-10-12">
+        <span class="daychip">Day 2 · Mon 12 Oct</span><span class="todaybadge">Today ✨</span>
         <h3>🇨🇭 Hello Zurich → Rhine Falls (Rheinfall)</h3>
         <p class="tagline">Europe's largest waterfall on arrival day 🌊</p>
         <ul>
           <li><strong>09:05</strong> Arrive Zürich HB — store luggage in station lockers 🧳</li>
           <li>Train to <strong>Schloss Laufen am Rheinfall</strong> / Neuhausen (~50 min via Winterthur)</li>
-          <li>View the falls from the Schloss Laufen platforms; boat trip to the rock if running ⛵</li>
+          <li>View the falls from Schloss Laufen platforms; boat trip to the rock if running ⛵</li>
           <li>Return to Zürich — check in from <strong>15:00</strong> at VISIONAPARTMENTS Albertstrasse (self check-in)</li>
           <li>Upload ID using booking <strong>B891286</strong> + last name <strong>Chowdhury</strong></li>
-          <li>Quiet hours 22:00–06:00 😴 — light dinner &amp; early night after the overnight train</li>
+          <li>Quiet hours 22:00–06:00 😴 — light dinner &amp; early night</li>
         </ul>
         <div class="critical">
-          <strong>Flexibility tip:</strong> Big first day after a night on the train. If the children are exhausted, do the falls and skip the rest — the waterfall is the highlight.
+          <strong>Flexibility tip:</strong> Big first day after a night on the train. If the children are exhausted, do the falls and skip the rest.
         </div>
       </div>
 
-      <div class="day sun">
-        <span class="daychip">Day 3 · Tue 13 Oct</span>
+      <div class="day sun" data-date="2026-10-13">
+        <span class="daychip">Day 3 · Tue 13 Oct</span><span class="todaybadge">Today ✨</span>
         <h3>🏔️ Lauterbrunnen day trip — Swiss Alps</h3>
         <p class="tagline">Valley of 72 waterfalls · <strong>SBB day ticket in use</strong> 🎫</p>
         <ul>
           <li>Early start: Zürich → Bern → Interlaken Ost → Lauterbrunnen (~2h 15m each way)</li>
           <li>Staubbach Falls &amp; the village walk through the Lauterbrunnen valley</li>
-          <li><strong>Trümmelbach Falls:</strong> bus 141 from Lauterbrunnen station (~10 min) — glacier falls inside the mountain (bring a light rain jacket!)</li>
+          <li><strong>Trümmelbach Falls:</strong> bus 141 from Lauterbrunnen station (~10 min) — bring a light rain jacket!</li>
           <li><strong>Optional upgrade:</strong> cable car Grütschalp → train to Mürren for Eiger, Mönch &amp; Jungfrau views</li>
           <li>Return to Zürich in the evening — this is a full day out</li>
           <li>7-year-old travels free with a parent thanks to the <strong>SBB Junior-Karte</strong> 👧</li>
@@ -678,23 +821,23 @@
         </div>
       </div>
 
-      <div class="day travel">
-        <span class="daychip">Day 4 · Wed 14 Oct</span>
+      <div class="day travel" data-date="2026-10-14">
+        <span class="daychip">Day 4 · Wed 14 Oct</span><span class="todaybadge">Today ✨</span>
         <h3>✈️ More Zurich → fly to Barcelona</h3>
         <p class="tagline">Last Swiss morning, then off to Spain</p>
         <ul>
           <li>Check out by <strong>10:00</strong> — store luggage at Zürich HB lockers if exploring</li>
-          <li>Zurich highlights close to the station: Old Town (Altstadt), Grossmünster, Lindenhof viewpoint, Lake Zürich promenade 🌅</li>
+          <li>Zurich highlights: Old Town (Altstadt), Grossmünster, Lindenhof viewpoint, Lake Zürich promenade 🌅</li>
           <li>Head to ZRH about <strong>3 hrs before departure</strong> (Zürich HB → ZRH ~10–12 min by train)</li>
           <li>Fly <strong>ZRH → BCN</strong> (Vueling) 👨‍👩‍👧‍👦</li>
           <li>Transfer BCN → Castelldefels: train, bus, or taxi 🚕</li>
           <li>Address: <strong>Carrer del Doctor Ferran, 5, 08860 Castelldefels</strong></li>
-          <li>Airbnb check-in from <strong>16:00</strong> — keypad self check-in, ask host for code</li>
+          <li>Airbnb check-in from <strong>16:00</strong> — keypad self check-in</li>
         </ul>
       </div>
 
-      <div class="day beach">
-        <span class="daychip">Days 5–8 · 15–18 Oct</span>
+      <div class="day beach" data-date="2026-10-15">
+        <span class="daychip">Days 5–8 · 15–18 Oct</span><span class="todaybadge">Today ✨</span>
         <h3>🏖️ Barcelona &amp; Castelldefels Bliss</h3>
         <p class="tagline">Sun, sand, tapas and Gaudí magic</p>
         <ul>
@@ -703,13 +846,13 @@
           <li>✨ Sagrada Família · Park Güell · Barcelona Aquarium 🐠 · Ciutadella Park · Gothic Quarter · Montjuïc cable car · Tibidabo</li>
           <li>Book timed tickets online in advance 📱</li>
           <li>Stroller for the 4-year-old + carrier for the baby 👶</li>
-          <li>Easy trips: Sitges, Montserrat, or just a lazy beach day ☀️</li>
+          <li>Easy trips: Sitges, Montserrat, or a lazy beach day ☀️</li>
           <li class="critical">⚠️ Airbnb shows "4 guests maximum" but you have 5 — confirm with host that the infant is allowed!</li>
         </ul>
       </div>
 
-      <div class="day warn">
-        <span class="daychip">Day 9 · Mon 19 Oct</span>
+      <div class="day warn" data-date="2026-10-19">
+        <span class="daychip">Day 9 · Mon 19 Oct</span><span class="todaybadge">Today ✨</span>
         <h3>🏁 The Big Journey Home</h3>
         <p class="tagline">One last croissant, then homeward bound</p>
         <ul>
@@ -719,185 +862,427 @@
           <li><strong>18:21</strong> Arrive <span class="highlight">Dresden-Neustadt</span> — home sweet home 🏡</li>
         </ul>
         <div class="critical">
-          <strong>⏰ Critical timing:</strong> BER → Ostkreuz takes ~30 min by S-Bahn + walking. The DB ticket is non-refundable and has Zugbindung (train-bound). Give yourself a HUGE buffer — if the flight is late, this train is gone.
+          <strong>⏰ Critical timing:</strong> BER → Ostkreuz takes ~30 min by S-Bahn + walking. DB ticket is non-refundable with Zugbindung. Give a HUGE buffer — if the flight is late, this train is gone.
         </div>
       </div>
 
     </div>
   </section>
 
+  <!-- ============ WEATHER ============ -->
+  <section id="weather">
+    <h2><span class="emoji">🌤️</span> Mid-October Weather &amp; What to Wear</h2>
+    <p class="sub">Typical ranges for your travel dates — layers are your best friend.</p>
+    <div class="weather">
+      <div class="weather-card zurich">
+        <h4>🇨🇭 Zurich</h4>
+        <div class="temp">6 – 14 °C</div>
+        <p>Cool, rain likely, occasional fog</p>
+        <p><strong>Wear:</strong> waterproof jacket, layers, closed shoes</p>
+      </div>
+      <div class="weather-card alps">
+        <h4>🏔️ Lauterbrunnen / Alps</h4>
+        <div class="temp">3 – 10 °C</div>
+        <p>Colder in the valley, misty mornings</p>
+        <p><strong>Wear:</strong> warm layers, rain jacket, hat &amp; gloves for kids</p>
+      </div>
+      <div class="weather-card spain">
+        <h4>🇪🇸 Castelldefels / Barcelona</h4>
+        <div class="temp">18 – 24 °C</div>
+        <p>Mild, sunny, still beach-friendly</p>
+        <p><strong>Wear:</strong> t-shirts, light jackets, swimwear, sunscreen</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PACKING CHECKLIST ============ -->
+  <section id="packing">
+    <h2><span class="emoji">🎒</span> Family Packing Checklist</h2>
+    <p class="sub">Tick in your head or print and mark as you pack. Adapt as needed.</p>
+
+    <div class="checklist">
+      <div class="check-group">
+        <h4>📄 Documents</h4>
+        <ul>
+          <li>Passports (all 5)</li>
+          <li>Residence permits (all 5)</li>
+          <li>Printed bookings + this itinerary</li>
+          <li>Travel insurance documents</li>
+          <li>EHIC / health insurance cards</li>
+          <li>Photocopies of all documents</li>
+        </ul>
+      </div>
+
+      <div class="check-group">
+        <h4>👶 Baby (0 yrs)</h4>
+        <ul>
+          <li>Nappies + wipes (3 days' worth)</li>
+          <li>Formula / bottles / steriliser</li>
+          <li>Baby carrier</li>
+          <li>Sleeping bag + blanket</li>
+          <li>Spare clothes (2 sets/day)</li>
+          <li>Baby paracetamol</li>
+        </ul>
+      </div>
+
+      <div class="check-group">
+        <h4>🧒 Kids (4 &amp; 7 yrs)</h4>
+        <ul>
+          <li>Comfortable walking shoes</li>
+          <li>Rain jackets</li>
+          <li>Warm layers + hats</li>
+          <li>Swimwear + towels</li>
+          <li>Tablets + headphones + chargers</li>
+          <li>Small backpack each</li>
+        </ul>
+      </div>
+
+      <div class="check-group">
+        <h4>👨‍👩‍👧 Adults</h4>
+        <ul>
+          <li>Universal power adapter (CH type J + EU type F)</li>
+          <li>Phone chargers + power bank</li>
+          <li>Medications + first-aid kit</li>
+          <li>Reusable water bottles</li>
+          <li>Snacks for travel days</li>
+          <li>Sunglasses + sunscreen</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SIGHTS TRACKER ============ -->
+  <section id="sights">
+    <h2><span class="emoji">🎟️</span> Sights Booking Tracker</h2>
+    <p class="sub">Book ahead — October slots sell out, especially on weekends.</p>
+
+    <table class="tracker">
+      <thead>
+        <tr>
+          <th>Sight</th>
+          <th>When</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Rhine Falls boat (optional)</td>
+          <td>12 Oct</td>
+          <td><span class="status check">Check on day</span></td>
+        </tr>
+        <tr>
+          <td>SBB Saver Day Pass</td>
+          <td>13 Oct</td>
+          <td><span class="status tobook">To book / confirm</span></td>
+        </tr>
+        <tr>
+          <td>Sagrada Família</td>
+          <td>15–18 Oct</td>
+          <td><span class="status tobook">To book</span></td>
+        </tr>
+        <tr>
+          <td>Park Güell</td>
+          <td>15–18 Oct</td>
+          <td><span class="status tobook">To book</span></td>
+        </tr>
+        <tr>
+          <td>Barcelona Aquarium</td>
+          <td>15–18 Oct</td>
+          <td><span class="status tobook">To book</span></td>
+        </tr>
+        <tr>
+          <td>Tibidabo amusement park</td>
+          <td>15–18 Oct</td>
+          <td><span class="status check">Check opening</span></td>
+        </tr>
+        <tr>
+          <td>Trümmelbach Falls</td>
+          <td>13 Oct</td>
+          <td><span class="status check">Pay on entry</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ DAILY BUDGET ============ -->
+  <section id="budget">
+    <h2><span class="emoji">💰</span> Daily Budget Estimate</h2>
+    <p class="sub">On top of the €1,890 already booked. Food, local transport, small activities.</p>
+
+    <div class="budget">
+      <div class="budget-card">
+        <h4>🇨🇭 Zurich days</h4>
+        <div class="amt">CHF 120 – 150 / day</div>
+        <p>Family meals, local trams, coffees, snacks</p>
+        <p>Rhine Falls day: +CHF 40–60 (boat + lockers)</p>
+      </div>
+      <div class="budget-card">
+        <h4>🏔️ Lauterbrunnen day</h4>
+        <div class="amt">CHF 60 – 80 extra</div>
+        <p>Trümmelbach Falls entry, lunch in the valley, snacks</p>
+        <p>Cable car to Mürren (optional): +CHF 100 family</p>
+      </div>
+      <div class="budget-card">
+        <h4>🇪🇸 Castelldefels / Barcelona</h4>
+        <div class="amt">€80 – 110 / day</div>
+        <p>Tapas, beach cafés, R2 train tickets, small entries</p>
+        <p>Sagrada + Park Güell family tickets: ≈ €120 once</p>
+      </div>
+      <div class="budget-card">
+        <h4>🎉 Trip total (rough)</h4>
+        <div class="amt">€900 – 1,100</div>
+        <p>Flexible spend across all 9 days</p>
+        <p>Carry some CHF + EUR cash for small places</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EMERGENCY ============ -->
+  <section id="emergency">
+    <h2><span class="emoji">🚨</span> Emergency &amp; Contact Card</h2>
+    <p class="sub">Screenshot this section before you travel — works without internet.</p>
+
+    <div class="emergency">
+      <div class="emg-item">
+        <span class="ic">🆘</span>
+        <div>
+          <strong>EU Emergency Number</strong>
+          <span class="val">112</span>
+          <div class="meta">Police · Fire · Ambulance — works across CH, ES, DE</div>
+        </div>
+      </div>
+
+      <div class="emg-item">
+        <span class="ic">🏨</span>
+        <div>
+          <strong>Zurich Apartment</strong>
+          <span class="val">+41 44 248 34 34</span>
+          <div class="meta">VISIONAPARTMENTS Albertstrasse — no reception, self check-in</div>
+        </div>
+      </div>
+
+      <div class="emg-item">
+        <span class="ic">🏖️</span>
+        <div>
+          <strong>Castelldefels Airbnb</strong>
+          <span class="val">Apartamentos Centric</span>
+          <div class="meta">Contact via Airbnb app · Confirmation HM54PNWE2M</div>
+        </div>
+      </div>
+
+      <div class="emg-item">
+        <span class="ic">✈️</span>
+        <div>
+          <strong>Vueling Bookings</strong>
+          <span class="val">VY_WGBKHY · VY_YHNCXI</span>
+          <div class="meta">ZRH→BCN and BCN→BER · 5 passengers each</div>
+        </div>
+      </div>
+
+      <div class="emg-item">
+        <span class="ic">📞</span>
+        <div>
+          <strong>Booking.com 24h Support</strong>
+          <span class="val">+44 20 3320 2609</span>
+          <div class="meta">From abroad or Switzerland</div>
+        </div>
+      </div>
+
+      <div class="emg-item">
+        <span class="ic">🚆</span>
+        <div>
+          <strong>DB Reisezentrum</strong>
+          <span class="val">Berlin Ostkreuz</span>
+          <div class="meta">If the 16:32 IC is missed — rebooking desk in station</div>
+        </div>
+      </div>
+
+      <div class="emg-item">
+        <span class="ic">🏥</span>
+        <div>
+          <strong>Nearest Hospitals</strong>
+          <span class="val">Zurich · Castelldefels · Berlin</span>
+          <div class="meta">Klinik Hirslanden · Hospital Sant Joan Despí · DRK Köpenick</div>
+        </div>
+      </div>
+
+      <div class="emg-item">
+        <span class="ic">🛂</span>
+        <div>
+          <strong>Bangladesh Embassy</strong>
+          <span class="val">Berlin / Bern</span>
+          <div class="meta">If a passport is lost — contact before leaving for the airport</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ FILES ============ -->
   <section id="files">
     <h2><span class="emoji">📎</span> Your Booking Vault</h2>
-    <p class="sub">Keep this HTML file in the same folder as the PDFs. Click any card to open the file.</p>
+    <p class="sub">Keep this HTML file in the same folder as the PDFs. Tap any card to open the file.</p>
 
     <div class="files">
-
-      <a class="file-card" href="Booking.com_ Confirmation.pdf" target="_blank" rel="noopener">
+      <a class="file-card" href="Booking.com_ Confirmation.pdf" target="_blank" rel="noopener" aria-label="Open Zurich apartment confirmation">
         <span class="ftitle">🏨 Zurich Apartment</span>
         <span class="fname">Booking.com_ Confirmation.pdf</span>
         <span class="fbtn">Open PDF →</span>
       </a>
-
-      <a class="file-card" href="Booking.com_confimration1.pdf" target="_blank" rel="noopener">
+      <a class="file-card" href="Booking.com_confimration1.pdf" target="_blank" rel="noopener" aria-label="Open Zurich self check-in messages">
         <span class="ftitle">💬 Self Check-in Messages</span>
         <span class="fname">Booking.com_confimration1.pdf</span>
         <span class="fbtn">Open PDF →</span>
       </a>
-
-      <a class="file-card" href="DB_Ticket_144548969358.pdf" target="_blank" rel="noopener">
+      <a class="file-card" href="DB_Ticket_144548969358.pdf" target="_blank" rel="noopener" aria-label="Open Dresden to Zurich train ticket">
         <span class="ftitle">🚆 Dresden → Zürich</span>
         <span class="fname">DB_Ticket_144548969358.pdf</span>
         <span class="fbtn">Open PDF →</span>
       </a>
-
-      <a class="file-card" href="DB_Ticket_130246259840.pdf" target="_blank" rel="noopener">
+      <a class="file-card" href="DB_Ticket_130246259840.pdf" target="_blank" rel="noopener" aria-label="Open Berlin to Dresden train ticket">
         <span class="ftitle">🚆 Berlin → Dresden</span>
         <span class="fname">DB_Ticket_130246259840.pdf</span>
         <span class="fbtn">Open PDF →</span>
       </a>
-
-      <a class="file-card" href="Die Junior-Karte für eigene Kinder von 6 bis 15,99 Jahre. _ SBB.pdf" target="_blank" rel="noopener">
+      <a class="file-card" href="Die Junior-Karte für eigene Kinder von 6 bis 15,99 Jahre. _ SBB.pdf" target="_blank" rel="noopener" aria-label="Open SBB Junior-Karte info">
         <span class="ftitle">👧 SBB Junior-Karte</span>
         <span class="fname">Die Junior-Karte für eigene Kinder von 6 bis 15,99 Jahre. _ SBB.pdf</span>
         <span class="fbtn">Open PDF →</span>
       </a>
-
-      <a class="file-card" href="sbb tagesticket.pdf" target="_blank" rel="noopener">
+      <a class="file-card" href="sbb tagesticket.pdf" target="_blank" rel="noopener" aria-label="Open SBB day ticket">
         <span class="ftitle">🎫 SBB Day Ticket</span>
         <span class="fname">sbb tagesticket.pdf</span>
         <span class="fbtn">Open PDF →</span>
       </a>
-
-      <a class="file-card" href="Rechnung_11006896.pdf" target="_blank" rel="noopener">
+      <a class="file-card" href="Rechnung_11006896.pdf" target="_blank" rel="noopener" aria-label="Open Zurich to Barcelona flight invoice">
         <span class="ftitle">✈️ Zürich → Barcelona</span>
         <span class="fname">Rechnung_11006896.pdf</span>
         <span class="fbtn">Open PDF →</span>
       </a>
-
-      <a class="file-card" href="Rechnung_11007270.pdf" target="_blank" rel="noopener">
+      <a class="file-card" href="Rechnung_11007270.pdf" target="_blank" rel="noopener" aria-label="Open Barcelona to Berlin flight invoice">
         <span class="ftitle">✈️ Barcelona → Berlin</span>
         <span class="fname">Rechnung_11007270.pdf</span>
         <span class="fbtn">Open PDF →</span>
       </a>
-
-      <a class="file-card" href="Your trip overview - Airbnb.pdf" target="_blank" rel="noopener">
+      <a class="file-card" href="Your trip overview - Airbnb.pdf" target="_blank" rel="noopener" aria-label="Open Airbnb Castelldefels overview">
         <span class="ftitle">🏖️ Airbnb Castelldefels</span>
         <span class="fname">Your trip overview - Airbnb.pdf</span>
         <span class="fbtn">Open PDF →</span>
       </a>
-
     </div>
   </section>
 
-  <!-- ============ COSTS ============ -->
-  <section id="costs">
-    <h2><span class="emoji">💰</span> The Money Bit (Sorry!)</h2>
-    <p class="sub">Based on the uploaded PDFs. Original currency shown; EUR conversion is approximate.</p>
+  <!-- ============ COSTS (collapsible) ============ -->
+  <details class="collapse" id="costs" open>
+    <summary>💰 The Money Bit (tap to expand/collapse)</summary>
+    <div class="body">
+      <p class="sub">Based on the uploaded PDFs. Original currency shown; EUR conversion is approximate.</p>
 
-    <div class="cost-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Booking</th>
-            <th>Details</th>
-            <th>Original</th>
-            <th>≈ EUR</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>11–12 Oct</td>
-            <td>🚆 DB train</td>
-            <td>Dresden Hbf → Zürich HB, EC 458, 5 seats, family compartment</td>
-            <td class="num">€186.76</td>
-            <td class="num">€186.76</td>
-          </tr>
-          <tr>
-            <td>12–14 Oct</td>
-            <td>🏨 Zurich apartment</td>
-            <td>VISIONAPARTMENTS Albertstrasse, 2 nights, 5 guests, city tax included</td>
-            <td class="num">CHF 234.17</td>
-            <td class="num">≈ €252.00</td>
-          </tr>
-          <tr>
-            <td>1 year</td>
-            <td>👧 SBB Junior-Karte</td>
-            <td>Child travels free with a parent holding a valid ticket — used for the Lauterbrunnen day trip</td>
-            <td class="num">CHF 30.00</td>
-            <td class="num">≈ €32.28</td>
-          </tr>
-          <tr>
-            <td>13 Oct</td>
-            <td>🎫 SBB day ticket</td>
-            <td>Day ticket / Saver Day Pass for Lauterbrunnen. No price or date shown in the uploaded PDF — add the actual amount you paid.</td>
-            <td class="num">—</td>
-            <td class="num">—</td>
-          </tr>
-          <tr>
-            <td>14 Oct</td>
-            <td>✈️ ZRH → BCN</td>
-            <td>Vueling, 5 passengers, baggage + fees, Smily points discount applied</td>
-            <td class="num">€294.70</td>
-            <td class="num">€294.70</td>
-          </tr>
-          <tr>
-            <td>14–19 Oct</td>
-            <td>🏖️ Airbnb Castelldefels</td>
-            <td>Apartamentos Centric, 5 nights, non-refundable (HM54PNWE2M)</td>
-            <td class="num">€590.00</td>
-            <td class="num">€590.00</td>
-          </tr>
-          <tr>
-            <td>19 Oct</td>
-            <td>✈️ BCN → BER</td>
-            <td>Vueling, 5 passengers, baggage + fees</td>
-            <td class="num">€466.06</td>
-            <td class="num">€466.06</td>
-          </tr>
-          <tr>
-            <td>19 Oct</td>
-            <td>🚆 DB train</td>
-            <td>Berlin Ostkreuz → Dresden-Neustadt, IC 2571, 5 seats</td>
-            <td class="num">€67.98</td>
-            <td class="num">€67.98</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="cost-wrap">
+        <table class="cost-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Booking</th>
+              <th>Details</th>
+              <th>Original</th>
+              <th>≈ EUR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Date">11–12 Oct</td>
+              <td data-label="Booking">🚆 DB train</td>
+              <td data-label="Details">Dresden Hbf → Zürich HB, EC 458, 5 seats, family compartment</td>
+              <td data-label="Original" class="num">€186.76</td>
+              <td data-label="EUR" class="num">€186.76</td>
+            </tr>
+            <tr>
+              <td data-label="Date">12–14 Oct</td>
+              <td data-label="Booking">🏨 Zurich apartment</td>
+              <td data-label="Details">VISIONAPARTMENTS Albertstrasse, 2 nights, 5 guests, city tax included</td>
+              <td data-label="Original" class="num">CHF 234.17</td>
+              <td data-label="EUR" class="num">≈ €252.00</td>
+            </tr>
+            <tr>
+              <td data-label="Date">1 year</td>
+              <td data-label="Booking">👧 SBB Junior-Karte</td>
+              <td data-label="Details">Child travels free with a parent holding a valid ticket — used for Lauterbrunnen</td>
+              <td data-label="Original" class="num">CHF 30.00</td>
+              <td data-label="EUR" class="num">≈ €32.28</td>
+            </tr>
+            <tr>
+              <td data-label="Date">13 Oct</td>
+              <td data-label="Booking">🎫 SBB day ticket</td>
+              <td data-label="Details">Day ticket / Saver Day Pass for Lauterbrunnen. No price in the PDF — add actual amount paid.</td>
+              <td data-label="Original" class="num">—</td>
+              <td data-label="EUR" class="num">—</td>
+            </tr>
+            <tr>
+              <td data-label="Date">14 Oct</td>
+              <td data-label="Booking">✈️ ZRH → BCN</td>
+              <td data-label="Details">Vueling, 5 passengers, baggage + fees, Smily points discount</td>
+              <td data-label="Original" class="num">€294.70</td>
+              <td data-label="EUR" class="num">€294.70</td>
+            </tr>
+            <tr>
+              <td data-label="Date">14–19 Oct</td>
+              <td data-label="Booking">🏖️ Airbnb Castelldefels</td>
+              <td data-label="Details">Apartamentos Centric, 5 nights, non-refundable (HM54PNWE2M)</td>
+              <td data-label="Original" class="num">€590.00</td>
+              <td data-label="EUR" class="num">€590.00</td>
+            </tr>
+            <tr>
+              <td data-label="Date">19 Oct</td>
+              <td data-label="Booking">✈️ BCN → BER</td>
+              <td data-label="Details">Vueling, 5 passengers, baggage + fees</td>
+              <td data-label="Original" class="num">€466.06</td>
+              <td data-label="EUR" class="num">€466.06</td>
+            </tr>
+            <tr>
+              <td data-label="Date">19 Oct</td>
+              <td data-label="Booking">🚆 DB train</td>
+              <td data-label="Details">Berlin Ostkreuz → Dresden-Neustadt, IC 2571, 5 seats</td>
+              <td data-label="Original" class="num">€67.98</td>
+              <td data-label="EUR" class="num">€67.98</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="total-box">
+        <p>🇪🇺 <strong>EUR items subtotal:</strong> €1,605.50</p>
+        <p>🇨🇭 <strong>CHF items subtotal:</strong> CHF 264.17 (hotel + Junior-Karte)</p>
+        <p>💱 <strong>CHF converted:</strong> ≈ €284.25</p>
+        <p class="grand">🎉 Estimated Grand Total: ≈ €1,889.75</p>
+        <p class="note">≈ €378 per traveller · <strong>SBB day ticket is NOT included</strong> — add the actual amount. Card/FX fees may tweak this slightly.</p>
+      </div>
+
+      <p class="sub" style="margin-top:16px;background:#fff7ed;border-left:5px solid var(--coral);padding:12px;border-radius:10px">
+        <strong>Note:</strong> Zurich city tax (€37.60) already included. Extra beds/supplements excluded. SBB day ticket price not in the PDF — check your SBB account.
+      </p>
     </div>
+  </details>
 
-    <div class="total-box">
-      <p>🇪🇺 <strong>EUR items subtotal:</strong> €1,605.50</p>
-      <p>🇨🇭 <strong>CHF items subtotal:</strong> CHF 264.17 (hotel + Junior-Karte)</p>
-      <p>💱 <strong>CHF converted:</strong> ≈ €284.25 (using the hotel confirmation rate)</p>
-      <p class="grand">🎉 Estimated Grand Total: ≈ €1,889.75</p>
-      <p class="note">≈ €378 per traveller · <strong>SBB day ticket is NOT included</strong> — add the actual amount you paid. Card/FX fees may tweak this slightly.</p>
+  <!-- ============ NOTES (collapsible) ============ -->
+  <details class="collapse" id="notes" open>
+    <summary>📝 Pro Family-Traveller Notes</summary>
+    <div class="body">
+      <ul class="notes-list">
+        <li><span class="ic">🔑</span><div><strong>Zurich self check-in:</strong> No reception. Upload ID/passport before arrival using booking <strong>B891286</strong> and last name <strong>Chowdhury</strong>. Access code arrives on arrival day.</div></li>
+        <li><span class="ic">🌊</span><div><strong>Rhine Falls (12 Oct):</strong> Schloss Laufen viewing platforms are the best family viewpoint. Boat trips only run in season and depend on water levels — check on the day.</div></li>
+        <li><span class="ic">🏔️</span><div><strong>Lauterbrunnen (13 Oct):</strong> Long day from Zurich (~2h 15m each way). Bring snacks, water, warm layers. Trümmelbach Falls is inside the mountain — bring a light rain jacket.</div></li>
+        <li><span class="ic">🎫</span><div><strong>SBB day ticket:</strong> Used for Lauterbrunnen. Confirm whether it also covers Rhine Falls, or buy a separate ticket for 12 Oct. Valid only with a photo ID.</div></li>
+        <li><span class="ic">🏠</span><div><strong>Possible apartment swap:</strong> Messages mention an alternative at Cramerstrasse 8, 2nd floor. Your reply says no change needed — double-check the final address with VISIONAPARTMENTS.</div></li>
+        <li><span class="ic">🚭</span><div><strong>Zurich rules:</strong> No smoking, no parties, quiet hours 22:00–06:00, no daily cleaning, toiletries arrival-only.</div></li>
+        <li><span class="ic">👨‍👩‍👧‍👦</span><div><strong>Airbnb:</strong> Non-refundable. House rules show "4 guests maximum" — confirm the infant is allowed with your host.</div></li>
+        <li><span class="ic">🧳</span><div><strong>Flights:</strong> Vueling invoices include baggage, but verify the allowance for all 5 passengers. Arrive 3 hrs early.</div></li>
+        <li><span class="ic">🎫</span><div><strong>Trains:</strong> DB tickets need a photo ID. The Berlin → Dresden ticket is non-refundable with Zugbindung (train-bound).</div></li>
+        <li><span class="ic">👧</span><div><strong>Junior-Karte:</strong> 7-year-old travels free with a parent holding a valid ticket. Verify SBB rules for the 0 &amp; 4-year-olds.</div></li>
+        <li><span class="ic">💱</span><div><strong>Money:</strong> CHF in Switzerland, EUR in Spain &amp; Germany. Tell your bank you're travelling and carry a little cash.</div></li>
+        <li><span class="ic">📱</span><div><strong>Offline backup:</strong> Print all bookings + passports + insurance. Save everything on at least two phones.</div></li>
+      </ul>
     </div>
-
-    <p class="sub" style="margin-top:16px;background:#fff7ed;border-left:5px solid var(--coral);padding:12px;border-radius:10px">
-      <strong>Note:</strong> Zurich city tax (€3.76 × 5 guests × 2 nights = €37.60) appears already included in the final price. Extra beds/supplements are not included. The SBB day ticket price is not visible in the uploaded PDF — check your SBB account or receipt.
-    </p>
-  </section>
-
-  <!-- ============ NOTES ============ -->
-  <section id="notes">
-    <h2><span class="emoji">📝</span> Pro Family-Traveller Notes</h2>
-    <ul class="notes-list">
-      <li><span class="ic">🔑</span><div><strong>Zurich self check-in:</strong> No reception. Upload ID/passport before arrival using booking <strong>B891286</strong> and last name <strong>Chowdhury</strong>. Access code arrives on arrival day.</div></li>
-      <li><span class="ic">🌊</span><div><strong>Rhine Falls (12 Oct):</strong> Schloss Laufen viewing platforms are the best family viewpoint. Boat trips to the rock only run in season and depend on water levels — check on the day.</div></li>
-      <li><span class="ic">🏔️</span><div><strong>Lauterbrunnen (13 Oct):</strong> Long day from Zurich (~2h 15m each way). Bring snacks, water, and warm layers — the valley is cooler than Zurich. Trümmelbach Falls is inside the mountain — bring a light rain jacket.</div></li>
-      <li><span class="ic">🎫</span><div><strong>SBB day ticket:</strong> Used for the Lauterbrunnen trip. Confirm whether it also covers the Rhine Falls route, or buy a separate ticket for 12 Oct. Valid only with a photo ID.</div></li>
-      <li><span class="ic">🏠</span><div><strong>Possible apartment swap:</strong> Messages mention an alternative at Cramerstrasse 8, 2nd floor. Your reply says no change needed — double-check the final address with VISIONAPARTMENTS.</div></li>
-      <li><span class="ic">🚭</span><div><strong>Zurich rules:</strong> No smoking, no parties, quiet hours 22:00–06:00, no daily cleaning, toiletries are arrival-only.</div></li>
-      <li><span class="ic">👨‍👩‍👧‍👦</span><div><strong>Airbnb:</strong> Non-refundable. House rules show "4 guests maximum" — confirm the infant is allowed with your host.</div></li>
-      <li><span class="ic">🧳</span><div><strong>Flights:</strong> Vueling invoices include baggage, but verify the allowance for all 5 passengers. Arrive 3 hrs early.</div></li>
-      <li><span class="ic">🎫</span><div><strong>Trains:</strong> DB tickets need a photo ID. The Berlin → Dresden ticket is non-refundable with Zugbindung (train-bound).</div></li>
-      <li><span class="ic">👧</span><div><strong>Junior-Karte:</strong> 7-year-old travels free with a parent holding a valid ticket. Verify SBB rules for the 0 &amp; 4-year-olds.</div></li>
-      <li><span class="ic">💱</span><div><strong>Money:</strong> CHF in Switzerland, EUR in Spain &amp; Germany. Tell your bank you're travelling and carry a little cash.</div></li>
-      <li><span class="ic">📱</span><div><strong>Offline backup:</strong> Print all bookings + passports + insurance. Save everything on at least two phones.</div></li>
-    </ul>
-  </section>
+  </details>
 
 </main>
 
@@ -906,24 +1291,37 @@
 </footer>
 
 <script>
-  function applySelection() {
-    document.querySelectorAll('#printToolbar input[type="checkbox"]').forEach(function(cb){
-      var sec = document.getElementById(cb.dataset.target);
-      if (sec) sec.classList.toggle('no-print', !cb.checked);
+  // Countdown to departure
+  (function(){
+    var el = document.getElementById('countdown');
+    var start = new Date('2026-10-11T00:00:00');
+    var end   = new Date('2026-10-19T23:59:59');
+    var now   = new Date();
+    var day   = 1000*60*60*24;
+    if (now < start) {
+      var d = Math.ceil((start - now) / day);
+      el.textContent = '⏳ ' + d + ' day' + (d === 1 ? '' : 's') + ' until take-off!';
+    } else if (now > end) {
+      el.textContent = '📸 Hope you had an amazing trip!';
+    } else {
+      var d = Math.ceil((end - now) / day);
+      el.textContent = '🎉 Adventure in progress — ' + d + ' day' + (d === 1 ? '' : 's') + ' left!';
+    }
+  })();
+
+  // Auto-highlight "Today" card
+  (function(){
+    var today = new Date();
+    var iso = today.toISOString().slice(0,10);
+    document.querySelectorAll('.day[data-date]').forEach(function(card){
+      var d = card.getAttribute('data-date');
+      // Mark "Day 5-8" card as today for any date in 15-18 Oct
+      if (d === iso) card.classList.add('today');
+      if (d === '2026-10-15' && iso >= '2026-10-15' && iso <= '2026-10-18') {
+        card.classList.add('today');
+      }
     });
-  }
-  function printSelected() {
-    applySelection();
-    window.print();
-  }
-  function printAll() {
-    document.querySelectorAll('main section').forEach(function(s){ s.classList.remove('no-print'); });
-    document.querySelectorAll('#printToolbar input[type="checkbox"]').forEach(function(cb){ cb.checked = true; });
-    window.print();
-  }
-  window.addEventListener('afterprint', function(){
-    document.querySelectorAll('main section').forEach(function(s){ s.classList.remove('no-print'); });
-  });
+  })();
 </script>
 
 </body>
