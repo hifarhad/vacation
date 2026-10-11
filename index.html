@@ -340,9 +340,15 @@
     text-align:center;
     padding:26px 16px 40px;
     color:#5a4a80;
-    font-size:.9rem;
+    font-size:.95rem;
   }
   footer .heart{color:var(--pink)}
+  footer .sig{
+    font-weight:800;
+    color:#2a1a5e;
+    font-size:1rem;
+    letter-spacing:.3px;
+  }
 
   /* ==== PRINT TOOLBAR (screen only) ==== */
   .print-toolbar{
@@ -896,7 +902,7 @@
 </main>
 
 <footer>
-  Made with <span class="heart">❤️</span> for the Chowdhury family adventure · Verify all times, prices and baggage before you fly ✈️
+  Made with <span class="heart">❤️</span> for the loving <span class="sig">Chowdhury &amp; Sultana</span> family adventure · Verify all times, prices and baggage before you fly ✈️
 </footer>
 
 <script>
@@ -915,7 +921,6 @@
     document.querySelectorAll('#printToolbar input[type="checkbox"]').forEach(function(cb){ cb.checked = true; });
     window.print();
   }
-  // Reset after printing so screen view is restored
   window.addEventListener('afterprint', function(){
     document.querySelectorAll('main section').forEach(function(s){ s.classList.remove('no-print'); });
   });
