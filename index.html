@@ -301,82 +301,102 @@
     color:#5a2a00;
   }
 
-  /* ==== PAID SUMMARY CARD ==== */
-  .paid-summary {
-    background: linear-gradient(135deg, #075e3f, #0b8a5e);
-    color: #fff;
-    border-radius: 18px;
-    padding: 20px;
+  /* ==== COSTS DASHBOARD ==== */
+  .cost-dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
     margin-bottom: 24px;
-    box-shadow: 0 14px 30px rgba(7, 94, 63, 0.35);
+  }
+  .cost-card {
+    border-radius: 16px;
+    padding: 18px;
+    color: #fff;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.15);
   }
-  .paid-summary::before {
-    content: "✅";
+  .cost-card::before {
+    content: "";
     position: absolute;
-    font-size: 8rem;
-    right: -20px;
-    top: -30px;
-    opacity: 0.1;
+    font-size: 6rem;
+    right: -10px;
+    bottom: -20px;
+    opacity: 0.15;
   }
-  .paid-summary h3 {
-    margin: 0 0 14px;
-    font-size: 1.2rem;
-    color: #d1fae5;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .paid-summary .paid-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 12px;
-    position: relative;
-    z-index: 1;
-  }
-  .paid-summary .paid-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 12px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    font-size: 0.92rem;
-    backdrop-filter: blur(4px);
-  }
-  .paid-summary .paid-item span:first-child {
-    font-weight: 600;
-    opacity: 0.9;
-  }
-  .paid-summary .paid-item span:last-child {
-    font-weight: 800;
-    font-size: 1rem;
-  }
-  .paid-summary .paid-total {
-    margin-top: 16px;
-    padding-top: 14px;
-    border-top: 1px dashed rgba(255, 255, 255, 0.3);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.2rem;
-    font-weight: 900;
-    position: relative;
-    z-index: 1;
-  }
-  .paid-summary .paid-total span:first-child {
-    font-size: 1rem;
+  .cost-card h4 {
+    margin: 0 0 8px;
+    font-size: 0.9rem;
     font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     opacity: 0.9;
   }
+  .cost-card .amt {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 4px;
+  }
+  .cost-card .desc {
+    font-size: 0.82rem;
+    opacity: 0.85;
+  }
+  .cost-card.pre { background: linear-gradient(135deg, #075e3f, #0b8a5e); }
+  .cost-card.pre::before { content: "✅"; }
+  .cost-card.card-spend { background: linear-gradient(135deg, #8338ec, #3a86ff); }
+  .cost-card.card-spend::before { content: "💳"; }
+  .cost-card.cash-spend { background: linear-gradient(135deg, #d97706, #fb5607); }
+  .cost-card.cash-spend::before { content: "💵"; }
+  .cost-card.grand { background: linear-gradient(135deg, #ff006e, #8338ec); }
+  .cost-card.grand::before { content: "🏆"; }
 
-  /* ==== COST TABLE ==== */
+  .cost-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .breakdown-box {
+    background: #fff;
+    border: 2px solid #e7d8ff;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 6px 16px rgba(131,56,236,0.08);
+  }
+  .breakdown-box h4 {
+    margin: 0 0 12px;
+    font-size: 1.05rem;
+    color: #2a1a5e;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px dashed #e7d8ff;
+    padding-bottom: 8px;
+  }
+  .breakdown-box h4 span { color: #075e3f; font-weight: 900; }
+  .breakdown-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.88rem;
+  }
+  .breakdown-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid #f0e6ff;
+    gap: 10px;
+  }
+  .breakdown-list li:last-child { border-bottom: none; }
+  .breakdown-list li span:first-child { color: var(--muted); }
+  .breakdown-list li span:last-child { font-weight: 800; color: #1a1433; white-space: nowrap; }
+
+  /* ==== PRE-TRIP TABLE ==== */
   .cost-wrap{
     border-radius:18px;
     overflow:hidden;
     border:2px solid #ffd5a1;
+    margin-top: 10px;
   }
   table{width:100%;border-collapse:collapse;font-size:.9rem;background:#fff}
   th,td{padding:10px 9px;vertical-align:top;text-align:left;border-bottom:1px solid #ffeacc}
@@ -388,35 +408,7 @@
     text-transform:uppercase;
   }
   tbody tr:nth-child(even) td{background:#fffaf2}
-  tbody tr:hover td{background:#fff2d9}
   .num{white-space:nowrap;font-weight:800;color:#0b6b3a}
-  .total-box{
-    margin-top:18px;
-    background:linear-gradient(135deg,#06d6a0,#3a86ff);
-    color:#fff;
-    border-radius:18px;
-    padding:20px;
-    box-shadow:0 14px 30px rgba(6,214,160,.35);
-    position:relative;
-    overflow:hidden;
-  }
-  .total-box::before{
-    content:"💸";
-    position:absolute;
-    font-size:7rem;
-    right:-20px;
-    top:-30px;
-    opacity:.18;
-  }
-  .total-box p{margin:5px 0;position:relative}
-  .total-box .grand{
-    font-size:1.35rem;
-    font-weight:900;
-    margin-top:10px;
-    text-shadow:0 3px 10px rgba(0,0,0,.25);
-    letter-spacing:.5px;
-  }
-  .total-box .note{font-size:.85rem;opacity:.95}
 
   /* ==== FILES ==== */
   .files{
@@ -487,18 +479,9 @@
     gap:12px;
     align-items:flex-start;
   }
-  .emg-item .ic{
-    font-size:1.5rem;
-    line-height:1;
-    flex:0 0 auto;
-  }
+  .emg-item .ic{ font-size:1.5rem; line-height:1; flex:0 0 auto; }
   .emg-item strong{display:block;color:#a02b2b;font-size:.9rem;margin-bottom:2px}
-  .emg-item .val{
-    font-weight:700;
-    color:#2a1a5e;
-    font-size:.95rem;
-    word-break:break-word;
-  }
+  .emg-item .val{ font-weight:700; color:#2a1a5e; font-size:.95rem; word-break:break-word; }
   .emg-item .meta{font-size:.82rem;color:var(--muted);margin-top:2px}
 
   /* ==== CHECKLIST ==== */
@@ -521,17 +504,8 @@
     align-items:center;
     gap:6px;
   }
-  .check-group ul{
-    list-style:none;
-    margin:0;
-    padding:0;
-    font-size:.88rem;
-  }
-  .check-group li{
-    padding:4px 0 4px 22px;
-    position:relative;
-    color:#2a2a2a;
-  }
+  .check-group ul{ list-style:none; margin:0; padding:0; font-size:.88rem; }
+  .check-group li{ padding:4px 0 4px 22px; position:relative; color:#2a2a2a; }
   .check-group li::before{
     content:"☐";
     position:absolute;
@@ -560,10 +534,7 @@
     padding:9px 10px;
     text-align:left;
   }
-  .tracker td{
-    padding:9px 10px;
-    border-bottom:1px solid #f0e6ff;
-  }
+  .tracker td{ padding:9px 10px; border-bottom:1px solid #f0e6ff; }
   .tracker tr:last-child td{border-bottom:none}
   .tracker tr:nth-child(even) td{background:#faf7ff}
   .status{
@@ -577,34 +548,6 @@
   .status.booked{background:#d1fae5;color:#065f46}
   .status.tobook{background:#fef3c7;color:#92400e}
   .status.check{background:#dbeafe;color:#1e40af}
-
-  /* ==== BUDGET ==== */
-  .budget{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:12px;
-  }
-  .budget-card{
-    background:linear-gradient(180deg,#f0fdf4,#ecfeff);
-    border:2px solid #b9e6d0;
-    border-radius:14px;
-    padding:14px;
-  }
-  .budget-card h4{
-    margin:0 0 6px;
-    font-size:.95rem;
-    color:#065f46;
-    display:flex;
-    align-items:center;
-    gap:6px;
-  }
-  .budget-card .amt{
-    font-size:1.2rem;
-    font-weight:900;
-    color:#065f46;
-    margin-bottom:6px;
-  }
-  .budget-card p{margin:3px 0;font-size:.85rem;color:#2e5a48}
 
   /* ==== NOTES ==== */
   .notes-list{list-style:none;padding:0;margin:0}
@@ -641,14 +584,6 @@
   .weather-card.zurich{background:linear-gradient(135deg,#3a86ff,#8338ec)}
   .weather-card.alps{background:linear-gradient(135deg,#06d6a0,#0891b2)}
   .weather-card.spain{background:linear-gradient(135deg,#ffb703,#fb5607)}
-  .weather-card::after{
-    content:"";
-    position:absolute;
-    width:120px;height:120px;
-    border-radius:50%;
-    background:rgba(255,255,255,.12);
-    right:-30px;bottom:-30px;
-  }
 
   /* ==== COLLAPSIBLE ==== */
   details.collapse{
@@ -717,13 +652,11 @@
     .day .daychip{font-size:.7rem;padding:4px 10px}
     .sub{font-size:.86rem}
 
-    /* Paid Summary Mobile */
-    .paid-summary{padding:16px;border-radius:14px}
-    .paid-summary .paid-grid{grid-template-columns:1fr;gap:8px}
-    .paid-summary .paid-item{padding:6px 10px;font-size:.86rem}
-    .paid-summary .paid-total{font-size:1.1rem;flex-direction:column;align-items:flex-start;gap:4px}
-
-    /* Cost table → stack into label/value */
+    /* Costs Mobile */
+    .cost-dashboard { grid-template-columns: 1fr; gap: 12px; }
+    .cost-breakdown { grid-template-columns: 1fr; gap: 12px; }
+    .cost-card .amt { font-size: 1.5rem; }
+    
     .cost-wrap{border:none;background:transparent;overflow:visible}
     table.cost-table, table.cost-table thead, table.cost-table tbody,
     table.cost-table th, table.cost-table td, table.cost-table tr{
@@ -756,10 +689,6 @@
       letter-spacing:.5px;
       flex:0 0 40%;
     }
-    table.cost-table td.num{color:#0b6b3a}
-
-    .total-box{padding:16px;border-radius:14px}
-    .total-box .grand{font-size:1.15rem}
 
     .files{grid-template-columns:1fr;gap:10px}
     .file-card{padding:12px;border-radius:14px}
@@ -769,7 +698,6 @@
     .emergency{grid-template-columns:1fr;gap:10px}
     .emg-item{padding:12px}
     .checklist{grid-template-columns:1fr;gap:10px}
-    .budget{grid-template-columns:1fr;gap:10px}
     .weather{grid-template-columns:1fr;gap:10px}
     .notes-list li{font-size:.86rem;padding:10px 11px;gap:10px}
     .notes-list .ic{font-size:1.1rem}
@@ -798,7 +726,7 @@
     header .hero-chips{justify-content:flex-start}
     header::before,header::after{display:none}
     section, details.collapse{box-shadow:none;border:1px solid #ccd7e6;border-radius:8px;padding:12px 14px;margin:12px 0;page-break-inside:avoid}
-    section::before, .total-box::before, .weather-card::after, .paid-summary::before{display:none}
+    section::before, .total-box::before, .weather-card::after{display:none}
     h2{font-size:14pt;background:#eef4fb;border-left:6px solid #0b6bcb;padding:5px 10px;border-radius:4px}
     h2::after{display:none}
     .day{page-break-inside:avoid;border:1px solid #ccd7e6;border-left:6px solid #0b6bcb;border-radius:6px;padding:10px 12px;margin-bottom:8px;background:#fbfdff !important;transform:none !important;box-shadow:none !important}
@@ -806,12 +734,13 @@
     .day .todaybadge{display:none}
     .file-card{padding:6px 10px;border:1px solid #ccd7e6;border-radius:6px;margin-bottom:5px;page-break-inside:avoid;transform:none !important;box-shadow:none !important}
     .file-card .fbtn{display:none}
-    .total-box{background:#f0fbf6 !important;color:#14181f !important;border:2px solid #075e3f}
-    .total-box .grand{color:#075e3f;text-shadow:none}
-    .paid-summary{background:#f0fbf6 !important;color:#14181f !important;border:2px solid #075e3f}
-    .paid-summary h3{color:#075e3f}
-    .paid-summary .paid-item{background:#fff !important;border:1px solid #ccd7e6}
-    .notes-list li, .emg-item, .check-group, .budget-card, .weather-card{page-break-inside:avoid}
+    
+    .cost-card { box-shadow: none; border: 1px solid #ccc; color: #000; background: #fff !important; }
+    .cost-card h4, .cost-card .desc { color: #555; }
+    .cost-card::before { display: none; }
+    .breakdown-box { border: 1px solid #ccc; box-shadow: none; }
+    
+    .notes-list li, .emg-item, .check-group, .weather-card{page-break-inside:avoid}
     footer{padding:10px}
     details.collapse > summary{cursor:default}
     details.collapse:not([open]) > .body{display:block}
@@ -826,10 +755,9 @@
   <a href="#weather">🌤️ Weather</a>
   <a href="#packing">🎒 Packing</a>
   <a href="#sights">🎟️ Sights</a>
-  <a href="#budget">💰 Budget</a>
   <a href="#emergency">🚨 Emergency</a>
   <a href="#files">📎 Files</a>
-  <a href="#costs">💸 Costs</a>
+  <a href="#costs">💰 Costs</a>
   <a href="#notes">📝 Notes</a>
 </nav>
 
@@ -841,7 +769,7 @@
   
   <div class="hero-chips">
     <div class="countdown hero-chip" id="countdown">✨ Loading countdown…</div>
-    <div class="hero-chip paid">💸 Already paid: ≈ €1,890</div>
+    <div class="hero-chip paid">🏆 Total Trip Spend: ≈ €3,815</div>
   </div>
 
   <div class="hero-route">
@@ -1096,39 +1024,6 @@
     </table>
   </section>
 
-  <!-- ============ DAILY BUDGET (EXTRAS) ============ -->
-  <section id="budget">
-    <h2><span class="emoji">🪙</span> Estimated Extras Still to Spend</h2>
-    <p class="sub">This is <strong>on top</strong> of the €1,890 already paid. Food, local transport, small activities.</p>
-
-    <div class="budget">
-      <div class="budget-card">
-        <h4>🇨🇭 Zurich days</h4>
-        <div class="amt">CHF 120 – 150 / day</div>
-        <p>Family meals, local trams, coffees, snacks</p>
-        <p>Rhine Falls day: +CHF 40–60 (boat + lockers)</p>
-      </div>
-      <div class="budget-card">
-        <h4>🏔️ Lauterbrunnen day</h4>
-        <div class="amt">CHF 60 – 80 extra</div>
-        <p>Trümmelbach Falls entry, lunch in the valley, snacks</p>
-        <p>Cable car to Mürren (optional): +CHF 100 family</p>
-      </div>
-      <div class="budget-card">
-        <h4>🇪🇸 Castelldefels / Barcelona</h4>
-        <div class="amt">€80 – 110 / day</div>
-        <p>Tapas, beach cafés, R2 train tickets, small entries</p>
-        <p>Sagrada + Park Güell family tickets: ≈ €120 once</p>
-      </div>
-      <div class="budget-card">
-        <h4>🎉 Trip total (rough)</h4>
-        <div class="amt">€900 – 1,100</div>
-        <p>Flexible spend across all 9 days</p>
-        <p>Carry some CHF + EUR cash for small places</p>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ EMERGENCY ============ -->
   <section id="emergency">
     <h2><span class="emoji">🚨</span> Emergency &amp; Contact Card</h2>
@@ -1265,27 +1160,75 @@
 
   <!-- ============ COSTS (collapsible) ============ -->
   <details class="collapse" id="costs" open>
-    <summary>💰 The Money Bit (tap to expand/collapse)</summary>
+    <summary>💰 The Money Bit: Planned vs. Actual</summary>
     <div class="body">
       
-      <!-- NEW: PAID SUMMARY -->
-      <div class="paid-summary">
-        <h3>✅ What We've Already Paid</h3>
-        <div class="paid-grid">
-          <div class="paid-item"><span>🚆 Trains (2 DB tickets)</span><span>€254.74</span></div>
-          <div class="paid-item"><span>🏨 Zurich Apartment</span><span>≈ €252.00</span></div>
-          <div class="paid-item"><span>👧 SBB Junior-Karte</span><span>≈ €32.28</span></div>
-          <div class="paid-item"><span>✈️ Flights (ZRH→BCN &amp; BCN→BER)</span><span>€760.76</span></div>
-          <div class="paid-item"><span>🏖️ Airbnb Castelldefels</span><span>€590.00</span></div>
+      <!-- NEW DASHBOARD -->
+      <div class="cost-dashboard">
+        <div class="cost-card pre">
+          <h4>✅ Pre-Trip Bookings</h4>
+          <div class="amt">€1,889.78</div>
+          <div class="desc">Trains, flights, hotels, passes</div>
         </div>
-        <div class="paid-total">
-          <span>Total paid so far:</span>
-          <span>≈ €1,889.78</span>
+        <div class="cost-card card-spend">
+          <h4>💳 On-Trip Card Spend</h4>
+          <div class="amt">€1,725.30</div>
+          <div class="desc">From October bank statement</div>
+        </div>
+        <div class="cost-card cash-spend">
+          <h4>💵 Cash Spend</h4>
+          <div class="amt">€200.00</div>
+          <div class="desc">Food, taxis, water, small items</div>
+        </div>
+        <div class="cost-card grand">
+          <h4>🏆 Grand Total</h4>
+          <div class="amt">€3,815.08</div>
+          <div class="desc">Everything combined</div>
         </div>
       </div>
 
-      <p class="sub">Based on the uploaded PDFs. Original currency shown; EUR conversion is approximate.</p>
+      <h3 style="margin: 24px 0 12px; color: #2a1a5e; font-size: 1.1rem; border-left: 4px solid var(--purple); padding-left: 10px;">📍 On-Trip Spend by Location</h3>
+      
+      <div class="cost-breakdown">
+        
+        <!-- SWITZERLAND -->
+        <div class="breakdown-box">
+          <h4>🇨🇭 Switzerland <span>€574.38</span></h4>
+          <ul class="breakdown-list">
+            <li><span>Transport (SBB, ZVV, Cable Cars)</span><span>€274.61</span></li>
+            <li><span>Food & Dining</span><span>€86.65</span></li>
+            <li><span>Check-in / Luggage Fees</span><span>€173.66</span></li>
+            <li><span>Groceries & Snacks</span><span>€39.46</span></li>
+          </ul>
+        </div>
 
+        <!-- BARCELONA -->
+        <div class="breakdown-box">
+          <h4>🇪🇸 Barcelona <span>€964.63</span></h4>
+          <ul class="breakdown-list">
+            <li><span>Taxis & Transport</span><span>€339.80</span></li>
+            <li><span>Food & Dining (Tapas)</span><span>€281.95</span></li>
+            <li><span>Activities & Tickets</span><span>€56.00</span></li>
+            <li><span>Shopping & Groceries</span><span>€44.28</span></li>
+            <li><span>Other (Pharmacy, etc.)</span><span>€242.60</span></li>
+          </ul>
+        </div>
+
+        <!-- BERLIN/DRESDEN -->
+        <div class="breakdown-box">
+          <h4>🇩🇪 Berlin & Dresden <span>€186.29</span></h4>
+          <ul class="breakdown-list">
+            <li><span>Food (Ashiyana, BK, Pizza)</span><span>€110.39</span></li>
+            <li><span>Groceries (Netto, etc.)</span><span>€35.69</span></li>
+            <li><span>Health (Rossmann)</span><span>€14.15</span></li>
+            <li><span>Transport (DB, BF Berlin)</span><span>€9.00</span></li>
+            <li><span>Other / Shopping</span><span>€17.06</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="margin: 24px 0 12px; color: #2a1a5e; font-size: 1.1rem; border-left: 4px solid var(--purple); padding-left: 10px;">🧾 Pre-Trip Booking Details</h3>
+      
       <div class="cost-wrap">
         <table class="cost-table">
           <thead>
@@ -1315,28 +1258,28 @@
             <tr>
               <td data-label="Date">1 year</td>
               <td data-label="Booking">👧 SBB Junior-Karte</td>
-              <td data-label="Details">Child travels free with a parent holding a valid ticket — used for Lauterbrunnen</td>
+              <td data-label="Details">Child travels free with a parent holding a valid ticket</td>
               <td data-label="Original" class="num">CHF 30.00</td>
               <td data-label="EUR" class="num">≈ €32.28</td>
             </tr>
             <tr>
               <td data-label="Date">13 Oct</td>
               <td data-label="Booking">🎫 SBB day ticket</td>
-              <td data-label="Details">Day ticket / Saver Day Pass for Lauterbrunnen. No price in the PDF — add actual amount paid.</td>
+              <td data-label="Details">Day ticket / Saver Day Pass for Lauterbrunnen</td>
               <td data-label="Original" class="num">—</td>
               <td data-label="EUR" class="num">—</td>
             </tr>
             <tr>
               <td data-label="Date">14 Oct</td>
               <td data-label="Booking">✈️ ZRH → BCN</td>
-              <td data-label="Details">Vueling, 5 passengers, baggage + fees, Smily points discount</td>
+              <td data-label="Details">Vueling, 5 passengers, baggage + fees</td>
               <td data-label="Original" class="num">€294.70</td>
               <td data-label="EUR" class="num">€294.70</td>
             </tr>
             <tr>
               <td data-label="Date">14–19 Oct</td>
               <td data-label="Booking">🏖️ Airbnb Castelldefels</td>
-              <td data-label="Details">Apartamentos Centric, 5 nights, non-refundable (HM54PNWE2M)</td>
+              <td data-label="Details">Apartamentos Centric, 5 nights, non-refundable</td>
               <td data-label="Original" class="num">€590.00</td>
               <td data-label="EUR" class="num">€590.00</td>
             </tr>
@@ -1358,17 +1301,6 @@
         </table>
       </div>
 
-      <div class="total-box">
-        <p>🇪🇺 <strong>EUR items subtotal:</strong> €1,605.50</p>
-        <p>🇨🇭 <strong>CHF items subtotal:</strong> CHF 264.17 (hotel + Junior-Karte)</p>
-        <p>💱 <strong>CHF converted:</strong> ≈ €284.25</p>
-        <p class="grand">🎉 Estimated Grand Total: ≈ €1,889.75</p>
-        <p class="note">≈ €378 per traveller · <strong>SBB day ticket is NOT included</strong> — add the actual amount. Card/FX fees may tweak this slightly.</p>
-      </div>
-
-      <p class="sub" style="margin-top:16px;background:#fff7ed;border-left:5px solid var(--coral);padding:12px;border-radius:10px">
-        <strong>Note:</strong> Zurich city tax (€37.60) already included. Extra beds/supplements excluded. SBB day ticket price not in the PDF — check your SBB account.
-      </p>
     </div>
   </details>
 
@@ -1424,7 +1356,6 @@
     var iso = today.toISOString().slice(0,10);
     document.querySelectorAll('.day[data-date]').forEach(function(card){
       var d = card.getAttribute('data-date');
-      // Mark "Day 5-8" card as today for any date in 15-18 Oct
       if (d === iso) card.classList.add('today');
       if (d === '2026-10-15' && iso >= '2026-10-15' && iso <= '2026-10-18') {
         card.classList.add('today');
