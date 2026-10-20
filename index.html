@@ -341,18 +341,18 @@
     font-size: 0.82rem;
     opacity: 0.85;
   }
-  .cost-card.pre { background: linear-gradient(135deg, #075e3f, #0b8a5e); }
-  .cost-card.pre::before { content: "✅"; }
-  .cost-card.card-spend { background: linear-gradient(135deg, #8338ec, #3a86ff); }
-  .cost-card.card-spend::before { content: "💳"; }
-  .cost-card.cash-spend { background: linear-gradient(135deg, #d97706, #fb5607); }
-  .cost-card.cash-spend::before { content: "💵"; }
+  .cost-card.swiss { background: linear-gradient(135deg, #e63946, #b91c1c); }
+  .cost-card.swiss::before { content: "🇨🇭"; }
+  .cost-card.spain { background: linear-gradient(135deg, #f59e0b, #d97706); }
+  .cost-card.spain::before { content: "🇪🇸"; }
+  .cost-card.germany { background: linear-gradient(135deg, #1f2937, #111827); }
+  .cost-card.germany::before { content: "🇩🇪"; }
   .cost-card.grand { background: linear-gradient(135deg, #ff006e, #8338ec); }
   .cost-card.grand::before { content: "🏆"; }
 
   .cost-breakdown {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 16px;
     margin-bottom: 24px;
   }
@@ -374,6 +374,17 @@
     padding-bottom: 8px;
   }
   .breakdown-box h4 span { color: #075e3f; font-weight: 900; }
+  
+  .breakdown-category {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin: 12px 0 4px;
+    letter-spacing: 0.5px;
+  }
+  .breakdown-category:first-of-type { margin-top: 0; }
+
   .breakdown-list {
     list-style: none;
     padding: 0;
@@ -383,32 +394,13 @@
   .breakdown-list li {
     display: flex;
     justify-content: space-between;
-    padding: 6px 0;
+    padding: 5px 0;
     border-bottom: 1px solid #f0e6ff;
     gap: 10px;
   }
   .breakdown-list li:last-child { border-bottom: none; }
   .breakdown-list li span:first-child { color: var(--muted); }
   .breakdown-list li span:last-child { font-weight: 800; color: #1a1433; white-space: nowrap; }
-
-  /* ==== PRE-TRIP TABLE ==== */
-  .cost-wrap{
-    border-radius:18px;
-    overflow:hidden;
-    border:2px solid #ffd5a1;
-    margin-top: 10px;
-  }
-  table{width:100%;border-collapse:collapse;font-size:.9rem;background:#fff}
-  th,td{padding:10px 9px;vertical-align:top;text-align:left;border-bottom:1px solid #ffeacc}
-  th{
-    background:linear-gradient(135deg,var(--purple),var(--blue));
-    color:#fff;
-    font-size:.74rem;
-    letter-spacing:.6px;
-    text-transform:uppercase;
-  }
-  tbody tr:nth-child(even) td{background:#fffaf2}
-  .num{white-space:nowrap;font-weight:800;color:#0b6b3a}
 
   /* ==== FILES ==== */
   .files{
@@ -656,39 +648,6 @@
     .cost-dashboard { grid-template-columns: 1fr; gap: 12px; }
     .cost-breakdown { grid-template-columns: 1fr; gap: 12px; }
     .cost-card .amt { font-size: 1.5rem; }
-    
-    .cost-wrap{border:none;background:transparent;overflow:visible}
-    table.cost-table, table.cost-table thead, table.cost-table tbody,
-    table.cost-table th, table.cost-table td, table.cost-table tr{
-      display:block;
-      width:100%;
-    }
-    table.cost-table thead{display:none}
-    table.cost-table tr{
-      background:#fff;
-      border:2px solid #ffd5a1;
-      border-radius:14px;
-      margin-bottom:10px;
-      padding:12px;
-      box-shadow:0 6px 16px rgba(255,183,3,.12);
-    }
-    table.cost-table td{
-      border:none;
-      padding:5px 0;
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      font-size:.88rem;
-    }
-    table.cost-table td::before{
-      content:attr(data-label);
-      font-weight:800;
-      color:#2a1a5e;
-      text-transform:uppercase;
-      font-size:.72rem;
-      letter-spacing:.5px;
-      flex:0 0 40%;
-    }
 
     .files{grid-template-columns:1fr;gap:10px}
     .file-card{padding:12px;border-radius:14px}
@@ -726,7 +685,7 @@
     header .hero-chips{justify-content:flex-start}
     header::before,header::after{display:none}
     section, details.collapse{box-shadow:none;border:1px solid #ccd7e6;border-radius:8px;padding:12px 14px;margin:12px 0;page-break-inside:avoid}
-    section::before, .total-box::before, .weather-card::after{display:none}
+    section::before, .weather-card::after{display:none}
     h2{font-size:14pt;background:#eef4fb;border-left:6px solid #0b6bcb;padding:5px 10px;border-radius:4px}
     h2::after{display:none}
     .day{page-break-inside:avoid;border:1px solid #ccd7e6;border-left:6px solid #0b6bcb;border-radius:6px;padding:10px 12px;margin-bottom:8px;background:#fbfdff !important;transform:none !important;box-shadow:none !important}
@@ -738,7 +697,7 @@
     .cost-card { box-shadow: none; border: 1px solid #ccc; color: #000; background: #fff !important; }
     .cost-card h4, .cost-card .desc { color: #555; }
     .cost-card::before { display: none; }
-    .breakdown-box { border: 1px solid #ccc; box-shadow: none; }
+    .breakdown-box { border: 1px solid #ccc; box-shadow: none; page-break-inside: avoid; }
     
     .notes-list li, .emg-item, .check-group, .weather-card{page-break-inside:avoid}
     footer{padding:10px}
@@ -769,7 +728,7 @@
   
   <div class="hero-chips">
     <div class="countdown hero-chip" id="countdown">✨ Loading countdown…</div>
-    <div class="hero-chip paid">🏆 Total Trip Spend: ≈ €3,898</div>
+    <div class="hero-chip paid">🏆 Total Trip Spend: €3,627</div>
   </div>
 
   <div class="hero-route">
@@ -1160,149 +1119,128 @@
 
   <!-- ============ COSTS (collapsible) ============ -->
   <details class="collapse" id="costs" open>
-    <summary>💰 The Money Bit: Planned vs. Actual</summary>
+    <summary>💰 The Exact Trip Costs (Country Breakdown)</summary>
     <div class="body">
       
       <!-- NEW DASHBOARD -->
       <div class="cost-dashboard">
-        <div class="cost-card pre">
-          <h4>✅ Pre-Trip Bookings</h4>
-          <div class="amt">€2,170.36</div>
-          <div class="desc">Flights, trains, hotels, passes, Airbnb tax/deposit</div>
+        <div class="cost-card swiss">
+          <h4>🇨🇭 Switzerland</h4>
+          <div class="amt">€1,042</div>
+          <div class="desc">Zurich &amp; Lauterbrunnen</div>
         </div>
-        <div class="cost-card card-spend">
-          <h4>💳 On-Trip Card Spend</h4>
-          <div class="amt">€1,527.99</div>
-          <div class="desc">Oct 11–19 (strictly travel &amp; food)</div>
+        <div class="cost-card spain">
+          <h4>🇪🇸 Spain</h4>
+          <div class="amt">€1,967</div>
+          <div class="desc">Barcelona &amp; Castelldefels</div>
         </div>
-        <div class="cost-card cash-spend">
-          <h4>💵 Cash / Deposit</h4>
-          <div class="amt">€200.00</div>
-          <div class="desc">Food, taxis, water, small items + deposit</div>
+        <div class="cost-card germany">
+          <h4>🇩🇪 Germany</h4>
+          <div class="amt">€618</div>
+          <div class="desc">Berlin &amp; Dresden</div>
         </div>
         <div class="cost-card grand">
           <h4>🏆 Grand Total</h4>
-          <div class="amt">€3,898.35</div>
-          <div class="desc">Everything combined</div>
+          <div class="amt">€3,627</div>
+          <div class="desc">All expenses combined</div>
         </div>
       </div>
 
-      <h3 style="margin: 24px 0 12px; color: #2a1a5e; font-size: 1.1rem; border-left: 4px solid var(--purple); padding-left: 10px;">📍 On-Trip Spend by Location (Oct 11–19)</h3>
-      
       <div class="cost-breakdown">
         
         <!-- SWITZERLAND -->
         <div class="breakdown-box">
-          <h4>🇨🇭 Switzerland <span>€400.72</span></h4>
+          <h4>🇨🇭 Switzerland <span>€1,042.00</span></h4>
+          
+          <div class="breakdown-category">Accommodation &amp; Pre-booked</div>
           <ul class="breakdown-list">
-            <li><span>Transport (SBB, ZVV, Cable Cars)</span><span>€274.61</span></li>
-            <li><span>Food &amp; Dining</span><span>€86.65</span></li>
-            <li><span>Groceries &amp; Snacks</span><span>€39.46</span></li>
+            <li><span>Hotel (booked)</span><span>€240.00</span></li>
+            <li><span>Train to Zurich</span><span>€190.00</span></li>
+            <li><span>Junior-Karte (Aroosh)</span><span>€33.00</span></li>
+          </ul>
+
+          <div class="breakdown-category">Transport &amp; Activities</div>
+          <ul class="breakdown-list">
+            <li><span>Zurich Day Ticket (Day 1)</span><span>€60.00</span></li>
+            <li><span>Day Ticket Farhad &amp; Tabassum (Day 2)</span><span>€210.00</span></li>
+            <li><span>Zurich Day Ticket Farhad &amp; Tabassum (Day 3)</span><span>€60.00</span></li>
+            <li><span>Wengen Cable Car</span><span>€68.00</span></li>
+            <li><span>Rhine Falls Boat Ride</span><span>€62.00</span></li>
+            <li><span>Schloss Laufen Entry</span><span>€14.00</span></li>
+            <li><span>Luggage Lockers (Day 1 &amp; 3)</span><span>€50.00</span></li>
+            <li><span>Toilet Use</span><span>€3.50</span></li>
+          </ul>
+
+          <div class="breakdown-category">Food &amp; Groceries</div>
+          <ul class="breakdown-list">
+            <li><span>Migros Supermarket (Day 1)</span><span>€13.00</span></li>
+            <li><span>Migros Supermarket (Day 3)</span><span>€18.00</span></li>
+            <li><span>Bakery (Day 1)</span><span>€8.50</span></li>
+            <li><span>Interlaken West Snack/Coffee</span><span>€12.00</span></li>
           </ul>
         </div>
 
-        <!-- BARCELONA -->
+        <!-- SPAIN -->
         <div class="breakdown-box">
-          <h4>🇪🇸 Barcelona <span>€987.63</span></h4>
+          <h4>🇪🇸 Spain <span>€1,967.00</span></h4>
+          
+          <div class="breakdown-category">Accommodation &amp; Flights</div>
           <ul class="breakdown-list">
-            <li><span>Taxis &amp; Transport</span><span>€411.73</span></li>
-            <li><span>Food &amp; Dining (Tapas)</span><span>€289.20</span></li>
-            <li><span>Activities &amp; Tickets</span><span>€56.00</span></li>
-            <li><span>Shopping &amp; Groceries</span><span>€51.43</span></li>
-            <li><span>Airbnb Check-in Fees</span><span>€173.66</span></li>
-            <li><span>Health/Pharmacy</span><span>€6.45</span></li>
+            <li><span>Flight ZRH → BCN</span><span>€295.00</span></li>
+            <li><span>Apartment Cost (booked)</span><span>€590.00</span></li>
+            <li><span>Apartment Deposit</span><span>€150.00</span></li>
+            <li><span>Tourist Tax</span><span>€22.00</span></li>
+            <li><span>Taxi to Apartment (cash)</span><span>€50.00</span></li>
+          </ul>
+
+          <div class="breakdown-category">Local Transport</div>
+          <ul class="breakdown-list">
+            <li><span>Taxis (5 trips)</span><span>€236.00</span></li>
+            <li><span>Bus/Metro (3 days)</span><span>€67.00</span></li>
+            <li><span>Barcelona Cable Car</span><span>€51.00</span></li>
+            <li><span>Uber</span><span>€38.00</span></li>
+            <li><span>Renfe Trains</span><span>€38.00</span></li>
+          </ul>
+
+          <div class="breakdown-category">Food &amp; Dining</div>
+          <ul class="breakdown-list">
+            <li><span>Paella Restaurant</span><span>€110.00</span></li>
+            <li><span>Haveli Restaurant</span><span>€105.00</span></li>
+            <li><span>Bakeries (3 days)</span><span>€89.00</span></li>
+            <li><span>Dining</span><span>€62.00</span></li>
+            <li><span>Snack</span><span>€16.00</span></li>
+            <li><span>Ice Coffee &amp; Chorus</span><span>€10.00</span></li>
+          </ul>
+
+          <div class="breakdown-category">Activities &amp; Misc</div>
+          <ul class="breakdown-list">
+            <li><span>Poble Espanyol</span><span>€56.00</span></li>
+            <li><span>Massage</span><span>€15.00</span></li>
+            <li><span>Supermarket</span><span>€9.00</span></li>
+            <li><span>Etc.</span><span>€8.00</span></li>
           </ul>
         </div>
 
-        <!-- BERLIN/DRESDEN -->
+        <!-- GERMANY -->
         <div class="breakdown-box">
-          <h4>🇩🇪 Berlin (Oct 19) <span>€139.64</span></h4>
+          <h4>🇩🇪 Germany <span>€618.00</span></h4>
+          
+          <div class="breakdown-category">Transport</div>
           <ul class="breakdown-list">
-            <li><span>SumUp Ashiyana Pakis</span><span>€79.00</span></li>
-            <li><span>Burger King</span><span>€19.43</span></li>
-            <li><span>Rossmann</span><span>€14.15</span></li>
-            <li><span>Pizza Hut</span><span>€11.96</span></li>
-            <li><span>DB Vertrieb GmbH</span><span>€8.00</span></li>
-            <li><span>DB Fernverkehr AG</span><span>€3.90</span></li>
-            <li><span>BF Berlin Friedrichstr</span><span>€1.00</span></li>
-            <li><span>GEILE WARENAUTOMATEN</span><span>€2.20</span></li>
+            <li><span>Flight BCN → BER</span><span>€470.00</span></li>
+            <li><span>Berlin to Dresden Train</span><span>€68.00</span></li>
+          </ul>
+
+          <div class="breakdown-category">Food</div>
+          <ul class="breakdown-list">
+            <li><span>Berlin Dining</span><span>€80.00</span></li>
           </ul>
         </div>
+        
       </div>
 
-      <h3 style="margin: 24px 0 12px; color: #2a1a5e; font-size: 1.1rem; border-left: 4px solid var(--purple); padding-left: 10px;">🧾 Pre-Trip Booking Details</h3>
-      
-      <div class="cost-wrap">
-        <table class="cost-table">
-          <thead>
-            <tr>
-              <th>Date (Paid)</th>
-              <th>Booking</th>
-              <th>Details</th>
-              <th>≈ EUR</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Date">04 Oct</td>
-              <td data-label="Booking">✈️ ZRH → BCN</td>
-              <td data-label="Details">Vueling (CHECK24 Flug), 5 passengers</td>
-              <td data-label="EUR" class="num">€294.70</td>
-            </tr>
-            <tr>
-              <td data-label="Date">04 Oct</td>
-              <td data-label="Booking">✈️ BCN → BER</td>
-              <td data-label="Details">Vueling (CHECK24 Flug), 5 passengers</td>
-              <td data-label="EUR" class="num">€466.06</td>
-            </tr>
-            <tr>
-              <td data-label="Date">04 Oct</td>
-              <td data-label="Booking">🏨 Zurich apartment</td>
-              <td data-label="Details">Booking.com (Card charge)</td>
-              <td data-label="EUR" class="num">€237.82</td>
-            </tr>
-            <tr>
-              <td data-label="Date">06 Oct</td>
-              <td data-label="Booking">🚆 Dresden → Zürich</td>
-              <td data-label="Details">DB Vertrieb GmbH, 5 seats</td>
-              <td data-label="EUR" class="num">€186.76</td>
-            </tr>
-            <tr>
-              <td data-label="Date">08 Oct</td>
-              <td data-label="Booking">🎫 SBB Day Pass</td>
-              <td data-label="Details">SBB CFF FFS Mobile Tic (for Lauterbrunnen)</td>
-              <td data-label="EUR" class="num">€208.76</td>
-            </tr>
-            <tr>
-              <td data-label="Date">08 Oct</td>
-              <td data-label="Booking">🚆 Berlin → Dresden</td>
-              <td data-label="Details">DB Vertrieb GmbH, 5 seats</td>
-              <td data-label="EUR" class="num">€67.98</td>
-            </tr>
-            <tr>
-              <td data-label="Date">10 Oct</td>
-              <td data-label="Booking">🏖️ Airbnb Tax/Deposit</td>
-              <td data-label="Details">AIRBNB * HM54PNWE2M (Tourist tax / deposit)</td>
-              <td data-label="EUR" class="num">€86.00</td>
-            </tr>
-            <tr>
-              <td data-label="Date">Paid separately</td>
-              <td data-label="Booking">🏖️ Airbnb Castelldefels</td>
-              <td data-label="Details">Apartamentos Centric, 5 nights (Paid by other card)</td>
-              <td data-label="EUR" class="num">€590.00</td>
-            </tr>
-            <tr>
-              <td data-label="Date">Unknown</td>
-              <td data-label="Booking">👧 SBB Junior-Karte</td>
-              <td data-label="Details">CHF 30.00 (Not on card statement)</td>
-              <td data-label="EUR" class="num">≈ €32.28</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      
       <p class="sub" style="margin-top:16px;background:#fff7ed;border-left:5px solid var(--coral);padding:12px;border-radius:10px">
-        <strong>Methodology Note:</strong> On-trip card spend strictly covers Oct 11–19. The €86 is included as an Airbnb tourist tax/deposit. The €200 is listed separately as a cash/deposit amount for food, taxis, and small items. Personal expenses like the DHL charge on Oct 11 are excluded.
+        <strong>Note:</strong> These figures represent the exact actual costs incurred during the trip and pre-bookings, consolidated by country. 
       </p>
 
     </div>
